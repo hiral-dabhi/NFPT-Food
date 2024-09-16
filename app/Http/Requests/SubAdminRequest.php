@@ -17,7 +17,8 @@ class SubAdminRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'firstname' => 'required',
+            'lastname' => 'required',
             'email' => 'required|email|unique:users',
             'contact_number' => 'required|unique:users',
             'status' => 'required',

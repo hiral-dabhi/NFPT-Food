@@ -45,7 +45,8 @@ class SubAdminService
     public function store($requestData)
     {
         $userArr = [
-            'name' => Crypt::encryptString($requestData['name']),
+            'firstname' => Crypt::encryptString($requestData['firstname']),
+            'lastname' => Crypt::encryptString($requestData['lastname']),
             'user_id' => Auth::user()->id,
             'user_type' => '1',
             'email' => $requestData['email'],
@@ -61,7 +62,8 @@ class SubAdminService
     public function update($user, $requestData)
     {
         $userArr = [
-            'name' => Crypt::encryptString($requestData['name']),
+            'firstname' => Crypt::encryptString($requestData['firstname']),
+            'lastname' => Crypt::encryptString($requestData['lastname']),
             'user_id' => Auth::user()->id,
             'email' => $requestData['email'],
             'status' => $requestData['status'],

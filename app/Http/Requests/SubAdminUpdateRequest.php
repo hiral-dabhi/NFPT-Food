@@ -19,7 +19,8 @@ class SubAdminUpdateRequest extends FormRequest
         $user = $this->route('user');
 
         return [
-            'name' => 'required',
+            'firstname' => 'required',
+            'lastname' => 'required',
             'email' => 'nullable|email|unique:users,email,' . $user->id,
             'contact_number' => 'required|unique:users,contact_number,' . $user->id,
             'status' => 'required',
