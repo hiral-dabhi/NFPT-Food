@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    {{ __('Edit Employee') }}
+    {{ __('Edit Business Owner') }}
 @endsection
 @section('css')
     <!-- alertifyjs Css -->
@@ -15,13 +15,13 @@
             <div class="container-fluid px-[0.625rem]">
 
                 <!-- page title -->
-                <x-page-title title="Edit employee" pagetitle="Employee" />
+                <x-page-title title="Edit Business Owner" pagetitle="Business Owner" />
 
                 <div class="grid grid-cols-1 mt-3">
                     <div class="card dark:bg-zinc-800 dark:border-zinc-600">
                         <div class="card-body">
                             <form method="POST" action="{{ route('restaurantOwner.update', $user->id) }}"
-                                class="employee-edit-form" id="employee_form_edit">
+                                class="restaurant-edit-form" id="owner_form_edit">
                                 @csrf
                                 <div class="grid grid-cols-12 gap-x-6">
                                     <div class="col-span-12 lg:col-span-6">
