@@ -57,7 +57,7 @@ var restaurant = function () {
 
     var createRestaurantValidation = function () {
         var userRole = "{{getCurrentUserRoleName()}}";
-        $('.restaurant-create-form').validate({
+        $('.restaurant-create-form').validate({ 
             rules: {
                 name: "required",
                 email: {
