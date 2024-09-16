@@ -74,8 +74,7 @@ class RestaurantService
             'open_at' => $requestData['open_at'],
             'close_at' => $requestData['close_at'],
             'contact_number' => $requestData['contact_number'],
-            'description' => $requestData['description'],
-
+            'description' => $requestData['description']
         ];
 
         return RestaurantMaster::create($restaurantArr);
