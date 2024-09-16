@@ -11,7 +11,6 @@ var profile = function () {
                 elements[i].classList.remove("bg-gray-50/30");
             }
         }
-        console.log(isUpdate);
         $('#user_profile').validate({
             rules: {
                 name: {

@@ -7,6 +7,7 @@ use App\Models\UserBankDetail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
+use App\Models\RestaurantMaster;
 use Spatie\Activitylog\Contracts\Activity;
 use Spatie\Permission\Models\Role;
 
@@ -31,7 +32,8 @@ class ProfileService
 
     public function updateProfessionalProfile($requestData)
     {
-        $user = User::where('id', auth()->user()->id)->first();
+        $user = User::with('restaurantDetail')->where('id', auth()->user()->id)->first();
+      
         $userArr = [
             'name' => Crypt::encryptString($requestData['name']),
             'email' => $requestData['email'],
@@ -45,18 +47,23 @@ class ProfileService
         ];
 
         $user->update($userArr);
-        $restauranrArr = [
-            'name' => Crypt::encryptString($requestData['business_name']),
-            'address' => $requestData['address'],
-            'city' => $requestData['city'],
-            'zip_code' => $requestData['zip_code'],
-            'country' => $requestData['country'],
-            'state' => $requestData['state'],
-            'email' => $requestData['business_email'],
-            'contact_number' => $requestData['business_contact'],
-        ];
 
-        $user->restaurantDetail()->update($restauranrArr);
+        $restaurant = RestaurantMaster::where('type','0')->where('user_id',$user->id)->first();
+        if(!empty($restaurant)){
+            $restauranrArr = [
+                'name' => Crypt::encryptString($requestData['business_name']),
+                'address' => $requestData['address'],
+                'city' => $requestData['city'],
+                'zip_code' => $requestData['zip_code'],
+                'country' => $requestData['country'],
+                'state' => $requestData['state'],
+                'email' => $requestData['business_email'],
+                'open_at' => $requestData['open_at'],
+                'close_at' => $requestData['close_at'],
+                'contact_number' => $requestData['business_contact'],
+            ];    
+            $restaurant->update($restauranrArr);
+        }
         return $user;
     }
 

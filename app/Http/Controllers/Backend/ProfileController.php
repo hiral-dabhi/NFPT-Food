@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DocumentRequest;
 use App\Http\Requests\ProfileRequest;
+use App\Http\Requests\ProfessionalProfileRequest;
 use App\Models\User;
 use App\Services\GeneralService;
 use App\Services\ProfileService;
@@ -41,8 +42,9 @@ class ProfileController extends Controller
         return view('backend.profile.professionalProfile', compact('user','countryList'));
     }
 
-    public function updateProfessionalProfile(Request $request)
+    public function updateProfessionalProfile(ProfessionalProfileRequest $request)
     {
+        // dd('here');
         $this->profileService->updateProfessionalProfile($request->all());
         return redirect()->back()->with('success', 'Profile updated successfully');
     }

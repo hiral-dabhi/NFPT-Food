@@ -39,7 +39,7 @@
                     </div>
                     <div class="card dark:bg-zinc-800 dark:border-zinc-600">
                         <div class="card-body">
-                            <form method="POST" action="{{ route('professionalProfile.update', $user->id) }}"
+                            <form method="POST" action="{{ route('professionalProfile.update') }}"
                                 class="user_profile" id="user_profile">
                                 @csrf
                                 <div class="grid grid-cols-12 gap-x-6">
@@ -114,28 +114,7 @@
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
                                         </div>
-                                        <div class="mb-4">
-                                            <label for="open_at"
-                                                class="block mb-2 font-medium text-gray-700 dark:text-gray-100">Open At<span
-                                                    class="text-sm text-red-600">*</span></label>
-                                            <input type="time" name="open_at" id="open_at" placeholder="Open At"
-                                                class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-300 placeholder:text-gray-400 dark:text-zinc-100"
-                                                value="{{ old('open_at', $user->restaurantDetail->open_at ?? '') }}">
-                                            @error('open_at')
-                                                <p class="text-sm text-red-600">{{ $message }}</p>
-                                            @enderror
-                                        </div>
-                                        <div class="mb-4">
-                                            <label for="close_at"
-                                                class="block mb-2 font-medium text-gray-700 dark:text-gray-100">Close
-                                                At<span class="text-sm text-red-600">*</span></label>
-                                            <input type="time" name="close_at" id="close_at" placeholder="Open At"
-                                                class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-300 placeholder:text-gray-400 dark:text-zinc-100"
-                                                value="{{ old('close_at', $user->restaurantDetail->close_at ?? '') }}">
-                                            @error('close_at')
-                                                <p class="text-sm text-red-600">{{ $message }}</p>
-                                            @enderror
-                                        </div>
+                                       
                                         <div class="mb-4">
                                             <label for="password"
                                                 class="block mb-2 font-medium text-gray-700 dark:text-gray-100">Password</label>
@@ -241,10 +220,32 @@
                                                 class="block mb-2 font-medium text-gray-700 dark:text-gray-100">Zip
                                                 Code<span class="text-sm text-red-600">*</span></label>
                                             <input type="text" name="zip_code" id="zip_code"
-                                                placeholder="Enter zip_code"
+                                                placeholder="Enter zip code"
                                                 class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-300 placeholder:text-gray-400 dark:text-zinc-100"
                                                 value="{{ old('zip_code', $user->restaurantDetail->zip_code ?? '') }}">
                                             @error('zip_code')
+                                                <p class="text-sm text-red-600">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-4">
+                                            <label for="open_at"
+                                                class="block mb-2 font-medium text-gray-700 dark:text-gray-100">Open At<span
+                                                    class="text-sm text-red-600">*</span></label>
+                                            <input type="time" name="open_at" id="open_at" placeholder="Open At"
+                                                class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-300 placeholder:text-gray-400 dark:text-zinc-100"
+                                                value="{{ old('open_at', $user->restaurantDetail->open_at ?? '') }}">
+                                            @error('open_at')
+                                                <p class="text-sm text-red-600">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-4">
+                                            <label for="close_at"
+                                                class="block mb-2 font-medium text-gray-700 dark:text-gray-100">Close
+                                                At<span class="text-sm text-red-600">*</span></label>
+                                            <input type="time" name="close_at" id="close_at" placeholder="Open At"
+                                                class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-300 placeholder:text-gray-400 dark:text-zinc-100"
+                                                value="{{ old('close_at', $user->restaurantDetail->close_at ?? '') }}">
+                                            @error('close_at')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
                                         </div>
