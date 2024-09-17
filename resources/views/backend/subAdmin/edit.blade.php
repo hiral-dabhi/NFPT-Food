@@ -31,7 +31,7 @@
                                                     class="text-sm text-red-600">*</span></label>
                                             <input type="text" name="firstname" id="firstname" placeholder="Enter First Name"
                                                 class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-300 placeholder:text-gray-400 dark:text-zinc-100""
-                                                value="{{ old('firstname', Crypt::decryptString($user->firstname)  ?? '') }}">
+                                                value="{{ old('firstname', isset($value->firstname) && !empty($value->firstname) ? Crypt::decryptString($value->firstname) : '') }}">
                                             @error('firstname')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
@@ -42,7 +42,7 @@
                                                     class="text-sm text-red-600">*</span></label>
                                             <input type="text" name="lastname" id="lastname" placeholder="Enter  Last Name"
                                                 class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-300 placeholder:text-gray-400 dark:text-zinc-100""
-                                                value="{{ old('lastname', Crypt::decryptString($user->lastname)  ?? '') }}">
+                                                value="{{ old('lastname',!empty($value->lastname) ?Crypt::decryptString($value->lastname) : '') }}">
                                             @error('lastname')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror

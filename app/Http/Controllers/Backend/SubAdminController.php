@@ -36,9 +36,11 @@ class SubAdminController extends Controller
         $response = $this->subAdminService->fetch($request->all(),$columns);
         $data = [];
         foreach ($response['data'] as $value) {
+            $firstname = !empty($value->firstname) ?Crypt::decryptString($value->firstname) : '';
+            $lastname = !empty($value->lastname) ?Crypt::decryptString($value->lastname) : '';
             $data[] = [
                 'id' => $value->id,
-                'name' => Crypt::decryptString($value->firstname).' '.Crypt::decryptString($value->lastname) ?? '',
+                'name' =>$firstname.' '.$lastname ?? '',
                 'email' => $value->email ?? '',
                 'contact_number' => $value->contact_number ?? '',
                 'country'=>$value->hasCountry->name ?? '',
