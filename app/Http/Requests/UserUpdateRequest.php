@@ -23,7 +23,8 @@ class UserUpdateRequest extends FormRequest
     {
         $user = $this->route('user');
         return [
-            'name' => 'required|string|max:255',
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
             'contact_number' => 'required|digits:10',
             'email' => 'nullable|email|unique:users,email,' . $user->id,
             'status' => 'required',

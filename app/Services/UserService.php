@@ -44,7 +44,8 @@ class UserService
     public function store($requestData)
     {
         $userArr = [
-            'name' => Crypt::encryptString($requestData['name']),
+            'firstname' => Crypt::encryptString($requestData['firstname']),
+            'lastname' => Crypt::encryptString($requestData['lastname']),
             'email' => $requestData['email'],
             'status' => $requestData['status'],
             'contact_number' => $requestData['contact_number'],
@@ -57,7 +58,8 @@ class UserService
     public function update($user, $requestData)
     {
         $userArr = [
-            'name' => Crypt::encryptString($requestData['name']),
+            'firstname' => Crypt::encryptString($requestData['firstname']),
+            'lastname' => Crypt::encryptString($requestData['lastname']),
             'email' => $requestData['email'],
             'status' => $requestData['status'],
             'password' => Hash::make($requestData['password']),

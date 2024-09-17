@@ -64,7 +64,8 @@ class RestaurantStaffService
             $userId = auth()->user()->id;
         }      
         $userArr = [
-            'name' => Crypt::encryptString($requestData['name']),
+            'firstname' => Crypt::encryptString($requestData['firstname']),
+            'lastname' => Crypt::encryptString($requestData['lastname']),
             'email' => $requestData['email'],
             'contact_number' => $requestData['contact_number'],
             'user_id'=> $userId,
@@ -84,7 +85,8 @@ class RestaurantStaffService
     public function update($user, $requestData)
     {
         $userArr = [
-            'name' => Crypt::encryptString($requestData['name']),
+            'firstname' => Crypt::encryptString($requestData['firstname']),
+            'lastname' => Crypt::encryptString($requestData['lastname']),
             'email' => $requestData['email'],
             'contact_number' => $requestData['contact_number'],
             'password' => Hash::make($requestData['password']),

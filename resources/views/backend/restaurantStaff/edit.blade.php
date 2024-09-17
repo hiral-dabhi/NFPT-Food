@@ -26,13 +26,24 @@
                                 <div class="grid grid-cols-12 gap-x-6">
                                     <div class="col-span-12 lg:col-span-6">
                                         <div class="mb-4">
-                                            <label for="name"
-                                                class="block mb-2 font-medium text-gray-700 dark:text-gray-100">Name<span
+                                            <label for="firstname"
+                                                class="block mb-2 font-medium text-gray-700 dark:text-gray-100"> First Name<span
                                                     class="text-sm text-red-600">*</span></label>
-                                            <input type="text" name="name" id="name" placeholder="Enter Name"
+                                            <input type="text" name="firstname" id="firstname" placeholder="Enter first Name"
                                                 class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-300 placeholder:text-gray-400 dark:text-zinc-100""
-                                                value="{{ old('name',Crypt::decryptString($user->name) ?? '') }}">
-                                            @error('name')
+                                                value="{{ old('firstname',Crypt::decryptString($user->name) ?? '') }}">
+                                            @error('firstname')
+                                                <p class="text-sm text-red-600">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-4">
+                                            <label for="lastname"
+                                                class="block mb-2 font-medium text-gray-700 dark:text-gray-100">Last Name<span
+                                                    class="text-sm text-red-600">*</span></label>
+                                            <input type="text" name="lastname" id="lastname" placeholder="Enter  Last Name"
+                                                class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-300 placeholder:text-gray-400 dark:text-zinc-100""
+                                                value="{{ old('lastname',Crypt::decryptString($user->lastname) ?? '') }}">
+                                            @error('lastname')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
                                         </div>

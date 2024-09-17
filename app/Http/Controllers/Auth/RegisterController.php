@@ -51,7 +51,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'firstname' => ['required', 'string', 'max:255'],
+            'lastname' => ['required', 'string', 'max:255'],
             'role_id' => ['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
@@ -68,7 +69,8 @@ class RegisterController extends Controller
     {
         // dd($data);
         $user =  User::create([
-            'name' => Crypt::encryptString($data['name']),
+            'firstname' => Crypt::encryptString($data['firstname']),
+            'lastname' => Crypt::encryptString($data['lastname']),
             'email' => $data['email'],
             'contact_number' => $data['contact'],
             'password' => Hash::make($data['password']),
