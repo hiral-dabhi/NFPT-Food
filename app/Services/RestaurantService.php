@@ -145,7 +145,8 @@ class RestaurantService
     public function storeOwner($requestData)
     {
         $userArr = [
-            'name' => Crypt::encryptString($requestData['name']),
+            'firstname' => Crypt::encryptString($requestData['firstname']),
+            'lastname' => Crypt::encryptString($requestData['lastname']),
             'email' => $requestData['email'],
             'address' => $requestData['address'],
             'city' => $requestData['city'],
@@ -175,7 +176,8 @@ class RestaurantService
     public function updateOwner($user, $requestData)
     {
         $userArr = [
-            'name' => Crypt::encryptString($requestData['name']),
+            'firstname' => Crypt::encryptString($requestData['firstname']),
+            'lastname' => Crypt::encryptString($requestData['lastname']),
             'email' => $requestData['email'],
             'address' => $requestData['address'],
             'city' => $requestData['city'],
