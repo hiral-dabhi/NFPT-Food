@@ -17,7 +17,8 @@ class ProfileService
     {
         $user = User::where('id', auth()->user()->id)->first();
         $userArr = [
-            'name' => Crypt::encryptString($requestData['name']),
+            'firstname' => Crypt::encryptString($requestData['firstname']),
+            'lastname' => Crypt::encryptString($requestData['lastname']),
             'email' => $requestData['email'],
             'address' => $requestData['address'],
             'city' => $requestData['city'],
@@ -33,9 +34,10 @@ class ProfileService
     public function updateProfessionalProfile($requestData)
     {
         $user = User::with('restaurantDetail')->where('id', auth()->user()->id)->first();
-      
+
         $userArr = [
-            'name' => Crypt::encryptString($requestData['name']),
+            'firstname' => Crypt::encryptString($requestData['firstname']),
+            'lastname' => Crypt::encryptString($requestData['lastname']),
             'email' => $requestData['email'],
             'address' => $requestData['address'],
             'city' => $requestData['city'],
@@ -48,8 +50,8 @@ class ProfileService
 
         $user->update($userArr);
 
-        $restaurant = RestaurantMaster::where('type','0')->where('user_id',$user->id)->first();
-        if(!empty($restaurant)){
+        $restaurant = RestaurantMaster::where('type', '0')->where('user_id', $user->id)->first();
+        if (!empty($restaurant)) {
             $restauranrArr = [
                 'name' => Crypt::encryptString($requestData['business_name']),
                 'address' => $requestData['address'],
@@ -61,7 +63,7 @@ class ProfileService
                 'open_at' => $requestData['open_at'],
                 'close_at' => $requestData['close_at'],
                 'contact_number' => $requestData['business_contact'],
-            ];    
+            ];
             $restaurant->update($restauranrArr);
         }
         return $user;

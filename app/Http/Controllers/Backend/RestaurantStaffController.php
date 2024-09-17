@@ -31,14 +31,14 @@ class RestaurantStaffController extends Controller
 
     public function fetch(Request $request)
     {
-        $columns = ['id', 'name', 'email', 'contact_number','created_by','created_at'];
+        $columns = ['id', 'firstname','lastname', 'email', 'contact_number','created_by','created_at'];
         $response = $this->restaurantStaffService->fetch($request->all(),$columns);
         $data = [];
         foreach ($response['data'] as $value) {
             $data[] = [
                 'id' => $value->id,
-                'restaurant_name' => Crypt::decryptString($value->name) ?? '',
-                'name' => Crypt::decryptString($value->name) ?? '',
+                'restaurant_name' => Crypt::decryptString($value->restaurantDetail->name) ?? '',
+                'name' => Crypt::decryptString($value->firstname).' '.Crypt::decryptString($value->lastname) ?? '',
                 'email' => $value->email ?? '',
                 'contact_number' => $value->contact_number ?? '',
                 'created_date' => date('Y-m-d H:i:s', strtotime($value->created_at)),
