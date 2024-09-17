@@ -16,7 +16,8 @@ class SubAdminService
         if (! empty($requestData['search']['value'])) {
             $searchValue = $requestData['search']['value'];
             $query->where(function ($q) use ($searchValue) {
-                $q->where('name', 'LIKE', '%' . $searchValue . '%')
+                $q->where('firstname', 'LIKE', '%' . $searchValue . '%')
+                    ->orWhere('lastname', 'LIKE', '%' . $searchValue . '%')
                     ->orWhere('id', 'LIKE', '%' . $searchValue . '%')
                     ->orWhere('email', 'LIKE', '%' . $searchValue . '%')
                     ->orWhere('contact_number', 'LIKE', '%' . $searchValue . '%')

@@ -37,7 +37,7 @@ class RestaurantController extends Controller
         foreach ($response['data'] as $value) {
             $data[] = [
                 'id' => $value->id,
-                'owner_name' => Crypt::decryptString($value->userDetail->name) ?? '',
+                'owner_name' => Crypt::decryptString($value->userDetail->firstname).' '.Crypt::decryptString($value->userDetail->lastname) ?? '',
                 'name' => Crypt::decryptString($value->name) ?? '',
                 'email' => $value->email ?? '',
                 'contact_number' => $value->contact_number ?? '',
@@ -101,13 +101,13 @@ class RestaurantController extends Controller
 
     public function restaurantOwnerFetch(Request $request)
     {
-        $columns = ['id', 'name', 'email', 'contact_number','address','city','state','country','zip_code','created_by'];
+        $columns = ['id', 'firstname','lastname', 'email', 'contact_number','address','city','state','country','zip_code','created_by'];
         $response = $this->restaurantService->fetchOwner($request->all(),$columns);
         $data = [];
         foreach ($response['data'] as $value) {
             $data[] = [
                 'id' => $value->id,
-                'name' => Crypt::decryptString($value->name) ?? '',
+                'name' => Crypt::decryptString($value->firstname).' '.Crypt::decryptString($value->lastname) ?? '',
                 'email' => $value->email ?? '',
                 'contact_number' => $value->contact_number ?? '',
                 'address' => $value->address ?? '',

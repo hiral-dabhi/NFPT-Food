@@ -220,10 +220,10 @@
                             aria-expanded="true">
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                 <img class="border-[3px] border-gray-700 dark:border-zinc-400 rounded-full w-9 h-9 ltr:xl:mr-2 rtl:xl:ml-2"
-                                    src="@if (Auth::user()->profile_photo_url) {{ Auth::user()->profile_photo_url }} @else https://ui-avatars.com/api/?name={{ Crypt::decryptString(Auth::user()->name) }}&color=7F9CF5&background=EBF4FF @endif"
-                                    alt="{{ Crypt::decryptString(Auth::user()->name) }}">
+                                    src="@if (Auth::user()->profile_photo_url) {{ Auth::user()->profile_photo_url }} @else https://ui-avatars.com/api/?name={{ Crypt::decryptString(Auth::user()->firstname.' '.auth()->user()->lastname) }}&color=7F9CF5&background=EBF4FF @endif"
+                                    alt="{{ Crypt::decryptString(Auth::user()->firstname.' '.auth()->user()->lastname) }}">
                             @endif
-                            <span class="hidden font-medium xl:block">{{ Crypt::decryptString(Auth::user()->name) }}</span>
+                            <span class="hidden font-medium xl:block">{{ Crypt::decryptString(Auth::user()->firstname.' '.auth()->user()->lastname) }}</span>
                             <i class="hidden align-bottom mdi mdi-chevron-down xl:block"></i>
                         </button>
                         <div class="absolute top-0 z-50 hidden w-40 list-none bg-white dropdown-menu dropdown-animation rounded shadow dark:bg-zinc-800"

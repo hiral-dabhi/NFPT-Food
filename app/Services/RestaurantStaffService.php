@@ -15,7 +15,7 @@ class RestaurantStaffService
 {
     public function fetch($requestData,$columns)
     {
-        $query = User::role('restaurantStaff')->where('user_type','2');
+        $query = User::role('restaurantStaff','restaurantDetail')->where('user_type','2');
         if(getCurrentUserRoleName() === 'RestaurantUser'){
             $query = $query->where('user_id',auth()->user()->id);
         }
