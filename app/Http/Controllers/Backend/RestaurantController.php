@@ -31,13 +31,18 @@ class RestaurantController extends Controller
 
     public function fetch(Request $request)
     {
-        $columns = ['id', 'name', 'email', 'contact_number','address','city','state','country','zip_code','created_by'];
-        $response = $this->restaurantService->fetch($request->all(),$columns);
+        $columns = ['id', 'name', 'email', 'contact_number', 'address', 'city', 'state', 'country', 'zip_code', 'created_by'];
+        $response = $this->restaurantService->fetch($request->all(), $columns);
         $data = [];
         foreach ($response['data'] as $value) {
+            // echo '<pre>';
+            // print_r($value->userDetail);
+            // die;
+            $ownerFirstName = !empty($value->userDetail->firstname) ?  Crypt::decryptString($value->userDetail->firstname) : '';
+            $ownerLastName = !empty($value->userDetail->lastname) ?  Crypt::decryptString($value->userDetail->lastname) : '';
             $data[] = [
                 'id' => $value->id,
-                'owner_name' => Crypt::decryptString($value->userDetail->firstname).' '.Crypt::decryptString($value->userDetail->lastname) ?? '',
+                'owner_name' => $ownerFirstName.' '.$ownerLastName,
                 'name' => Crypt::decryptString($value->name) ?? '',
                 'email' => $value->email ?? '',
                 'contact_number' => $value->contact_number ?? '',
@@ -65,7 +70,7 @@ class RestaurantController extends Controller
     {
         $userList = $this->generalService->getUserList('restaurantUser');
         $countryList = $this->generalService->getCountryList();
-        return view('backend.subRestaurant.create',compact('userList','countryList'));
+        return view('backend.subRestaurant.create', compact('userList', 'countryList'));
     }
 
     public function store(RestaurantRequest $request)
@@ -78,7 +83,7 @@ class RestaurantController extends Controller
     {
         $countryList = $this->generalService->getCountryList();
         $userList = $this->generalService->getUserList('restaurantUser');
-        return view('backend.subRestaurant.edit', compact('restaurant','userList','countryList'));
+        return view('backend.subRestaurant.edit', compact('restaurant', 'userList', 'countryList'));
     }
 
     public function update(RestaurantUpdateRequest $request, RestaurantMaster $restaurant)
@@ -101,13 +106,15 @@ class RestaurantController extends Controller
 
     public function restaurantOwnerFetch(Request $request)
     {
-        $columns = ['id', 'firstname','lastname', 'email', 'contact_number','address','city','state','country','zip_code','created_by'];
-        $response = $this->restaurantService->fetchOwner($request->all(),$columns);
+        $columns = ['id', 'firstname', 'lastname', 'email', 'contact_number', 'address', 'city', 'state', 'country', 'zip_code', 'created_by'];
+        $response = $this->restaurantService->fetchOwner($request->all(), $columns);
         $data = [];
         foreach ($response['data'] as $value) {
+            $ownerFirstName = !empty($value->firstname) ?  Crypt::decryptString($value->firstname) : '';
+            $ownerLastName = !empty($value->lastname) ?  Crypt::decryptString($value->lastname) : '';
             $data[] = [
                 'id' => $value->id,
-                'name' => Crypt::decryptString($value->firstname).' '.Crypt::decryptString($value->lastname) ?? '',
+                'name' => $ownerFirstName . ' ' . $ownerLastName,
                 'email' => $value->email ?? '',
                 'contact_number' => $value->contact_number ?? '',
                 'address' => $value->address ?? '',
@@ -130,7 +137,7 @@ class RestaurantController extends Controller
     public function restaurantOwnerCreate()
     {
         $countryList = $this->generalService->getCountryList();
-        return view('backend.restaurantOwner.create',compact('countryList'));
+        return view('backend.restaurantOwner.create', compact('countryList'));
     }
 
     public function restaurantOwnerStore(RestaurantRequest $request)
@@ -142,7 +149,7 @@ class RestaurantController extends Controller
     public function restaurantOwnerEdit(User $user)
     {
         $countryList = $this->generalService->getCountryList();
-        return view('backend.restaurantOwner.edit', compact('user','countryList'));
+        return view('backend.restaurantOwner.edit', compact('user', 'countryList'));
     }
 
     public function restaurantOwnerUpdate(RestaurantOwnerUpdateRequest $request, User $user)
@@ -157,4 +164,3 @@ class RestaurantController extends Controller
         return redirect()->route('restaurantOwner.index')->with('success', 'Deleted successfully!');
     }
 }
-

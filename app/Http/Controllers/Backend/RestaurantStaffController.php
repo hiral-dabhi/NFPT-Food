@@ -35,10 +35,13 @@ class RestaurantStaffController extends Controller
         $response = $this->restaurantStaffService->fetch($request->all(),$columns);
         $data = [];
         foreach ($response['data'] as $value) {
+            $firstName = !empty($value->firstname) ?  Crypt::decryptString($value->firstname) : '';
+            $lastName = !empty($value->lastname) ?  Crypt::decryptString($value->lastname) : '';
+            
             $data[] = [
                 'id' => $value->id,
-                'restaurant_name' => Crypt::decryptString($value->restaurantDetail->name) ?? '',
-                'name' => Crypt::decryptString($value->firstname).' '.Crypt::decryptString($value->lastname) ?? '',
+                'restaurant_name' => Crypt::decryptString($value->staffRestaurant->restaurantDetail->name) ?? '',
+                'name' => $firstName.' '.$lastName,
                 'email' => $value->email ?? '',
                 'contact_number' => $value->contact_number ?? '',
                 'created_date' => date('Y-m-d H:i:s', strtotime($value->created_at)),

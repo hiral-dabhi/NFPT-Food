@@ -23,7 +23,8 @@ class ProfileRequest extends FormRequest
     {
         // $user = $this->route('user');
         return [
-            'name' => 'required',
+            'firstname' => 'required',
+            'lastname' => 'required',
             'contact_number' => 'required|digits:10|unique:users,contact_number,' . auth()->user()->id,
             'email' => 'nullable|email|unique:users,email,' . auth()->user()->id,
             'address' => 'required',

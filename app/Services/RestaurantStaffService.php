@@ -15,7 +15,7 @@ class RestaurantStaffService
 {
     public function fetch($requestData,$columns)
     {
-        $query = User::role('restaurantStaff','restaurantDetail')->where('user_type','2');
+        $query = User::role('restaurantStaff')->with('staffRestaurant.restaurantDetail')->where('user_type','2');
         if(getCurrentUserRoleName() === 'RestaurantUser'){
             $query = $query->where('user_id',auth()->user()->id);
         }
@@ -23,9 +23,7 @@ class RestaurantStaffService
             $query = $query->whereHas('staffRestaurant.restaurantDetail', function ($query) {
                 $query->where('country', auth()->user()->country);
             });
-        }
-        
-    
+        }    
         if (! empty($requestData['search']['value'])) {
             $searchValue = $requestData['search']['value'];
             $query->where(function ($q) use ($searchValue) {

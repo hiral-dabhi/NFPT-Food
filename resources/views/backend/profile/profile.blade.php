@@ -27,7 +27,7 @@
                                                 class="text-sm text-red-600">*</span></label>
                                         <input type="text" name="firstname" id="firstname" placeholder="Enter Name"
                                             class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-300 placeholder:text-gray-400 dark:text-zinc-100""
-                                            value="{{ old('firstname', Crypt::decryptString($user->firstname) ?? '') }}">
+                                            value="{{ old('firstname', !empty($user->firstname) ? Crypt::decryptString($user->firstname) : '') }}">
                                         @error('firstname')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
@@ -38,7 +38,7 @@
                                                 class="text-sm text-red-600">*</span></label>
                                         <input type="text" name="lastname" id="lastname" placeholder="Enter Last Name"
                                             class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-300 placeholder:text-gray-400 dark:text-zinc-100""
-                                            value="{{ old('lastname', Crypt::decryptString($user->lastname) ?? '') }}">
+                                            value="{{ old('lastname', !empty($user->lastname) ? Crypt::decryptString($user->lastname) : '') }}">
                                         @error('lastname')
                                             <p class="text-sm text-red-600">{{ $message }}</p>
                                         @enderror
@@ -100,8 +100,7 @@
                                             class="block mb-2 font-medium text-gray-700 dark:text-gray-100">Country
                                             <span class="text-sm text-red-600">*</span></label>
                                         <select name="country" id="country"
-                                            class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-300 placeholder:text-gray-400 dark:text-zinc-100"
-                                            value="{{ old('country') }}">
+                                            class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-300 placeholder:text-gray-400 dark:text-zinc-100">
                                             <option value="">Select Country</option>
                                             @foreach ($countryList as $key => $value)
                                                 <option value="{{ $key }}" {{$user->country == $key ? 'selected' : ''}}>
