@@ -35,6 +35,7 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use App\Models\RadiusAcct;
 use App\Models\RestaurantMaster;
+use Illuminate\Support\Facades\Crypt;
 
 class GeneralService
 {
@@ -53,29 +54,39 @@ class GeneralService
         return Permission::where('type', $type)->get();
     }
 
-    public function getUserList($type){
-        return User::role($type)->pluck('name','id')->toArray();
+    public function getUserList($type)
+    {
+        return User::role($type)->get()->mapWithKeys(function ($user) {
+            $firstname = Crypt::decryptString($user->firstname);
+            $lastname = Crypt::decryptString($user->lastname);
+            $fullName = $firstname . ' ' . $lastname;
+    
+            return [$user->id => $fullName];
+        })->toArray();
     }
 
-    public function getRestaurantList(){
-        if(getCurrentUserRoleName() === 'RestaurantUser'){
-            return RestaurantMaster::where('user_id',auth()->user()->id)->pluck('name','id')->toArray();
+    public function getRestaurantList()
+    {
+        if (getCurrentUserRoleName() === 'RestaurantUser') {
+            return RestaurantMaster::where('user_id', auth()->user()->id)->pluck('name', 'id')->toArray();
         }
-        return RestaurantMaster::pluck('name','id')->toArray();
+        return RestaurantMaster::pluck('name', 'id')->toArray();
     }
 
-    public function getCountryList(){
-        $countryList =  Country::pluck('name','id')->toArray();
-        if(getCurrentUserRoleName() === 'SubAdmin' && !empty(auth()->user()->country)){
-            $countryList =  Country::where('id',auth()->user()->country)->pluck('name','id')->toArray();
+    public function getCountryList()
+    {
+        $countryList =  Country::pluck('name', 'id')->toArray();
+        if (getCurrentUserRoleName() === 'SubAdmin' && !empty(auth()->user()->country)) {
+            $countryList =  Country::where('id', auth()->user()->country)->pluck('name', 'id')->toArray();
         }
         return $countryList;
     }
-    public function getCategoryList(){
-        return Category::pluck('title','id')->toArray();
+    public function getCategoryList()
+    {
+        return Category::pluck('title', 'id')->toArray();
     }
 
-  
+
 
     // public function smsAlert($user, $type, $replacements)
     // {

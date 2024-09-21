@@ -35,9 +35,6 @@ class RestaurantController extends Controller
         $response = $this->restaurantService->fetch($request->all(), $columns);
         $data = [];
         foreach ($response['data'] as $value) {
-            // echo '<pre>';
-            // print_r($value->userDetail);
-            // die;
             $ownerFirstName = !empty($value->userDetail->firstname) ?  Crypt::decryptString($value->userDetail->firstname) : '';
             $ownerLastName = !empty($value->userDetail->lastname) ?  Crypt::decryptString($value->userDetail->lastname) : '';
             $data[] = [
@@ -163,4 +160,32 @@ class RestaurantController extends Controller
         $this->restaurantService->deleteOwner($user);
         return redirect()->route('restaurantOwner.index')->with('success', 'Deleted successfully!');
     }
+
+    public function businessAddress(RestaurantMaster $restaurant){
+        $countryList = $this->generalService->getCountryList();
+        return view('backend.subRestaurant.business-address', compact('restaurant','countryList'));
+    }
+    
+    public function updateBusinessAddress(Request $request,RestaurantMaster $restaurant)
+    {
+       
+        $request->validate([
+            'address' => 'required',
+            // 'city' => 'required',
+            // 'state' => 'required',
+            // 'zip_code' => 'required',
+            // 'country' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
+        ]);
+        $restaurant->address = $request->address;
+        $restaurant->city = $request->city;
+        $restaurant->state = $request->state;
+        $restaurant->zip_code = $request->zip_code;
+        $restaurant->country = $request->country;
+        $restaurant->latitude = $request->latitude;
+        $restaurant->longitude = $request->longitude;
+        $restaurant->save();
+        return redirect()->back()->with('success', 'Business details updated successfully.');
+    }    
 }

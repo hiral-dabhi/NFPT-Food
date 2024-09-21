@@ -7,6 +7,7 @@ use App\Http\Requests\RestaurantRequest;
 use App\Http\Requests\RestaurantStaffRequest;
 use App\Http\Requests\RestaurantStaffUpdateRequest;
 use App\Http\Requests\RestaurantUpdateRequest;
+use App\Models\RestaurantMaster;
 use App\Models\User;
 use App\Services\GeneralService;
 use App\Services\RestaurantStaffService;
@@ -86,6 +87,70 @@ class RestaurantStaffController extends Controller
     {
         $this->restaurantStaffService->delete($user);
         return redirect()->route('restaurantStaff.index')->with('success', 'Deleted successfully!');
+    }
+    public function businessDetail(){
+        $user = User::where('id',auth()->user()->id)->first();
+        $restaurant = $user->staffRestaurant->restaurantDetail ?? null;
+        return view('backend.restaurantStaff.business-detail', compact('restaurant'));
+    }
+    public function updateRestaurantDetail(Request $request,RestaurantMaster $restaurant)
+    {
+       
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'open_at' => 'required',
+            'close_at' => 'required',
+            'is_closed' => 'required|boolean',
+            'address' => 'required|string',
+            'city' => 'required|string|max:255',
+            'state' => 'required|string|max:255',
+            'zip_code' => 'required|string|max:10',
+        ]);
+        $restaurant->name = Crypt::encryptString($request->name);
+        $restaurant->description = $request->description;
+        $restaurant->open_at = $request->open_at;
+        $restaurant->close_at = $request->close_at;
+        $restaurant->is_closed = $request->is_closed;
+        $restaurant->address = $request->address;
+        $restaurant->city = $request->city;
+        $restaurant->state = $request->state;
+        $restaurant->zip_code = $request->zip_code;
+        $restaurant->save();
+
+        return redirect()->back()->with('success', 'Business details updated successfully.');
+    }
+
+    public function businessDetailMap(){
+        $user = User::where('id',auth()->user()->id)->first();
+        $restaurant = $user->staffRestaurant->restaurantDetail ?? null;
+        $countryList = $this->generalService->getCountryList();
+
+        return view('backend.restaurantStaff.business-map', compact('restaurant','countryList'));
+    }
+    
+    public function updateRestaurantAddress(Request $request,RestaurantMaster $restaurant)
+    {
+       
+        $request->validate([
+            'address' => 'required',
+            // 'city' => 'required',
+            // 'state' => 'required',
+            // 'zip_code' => 'required',
+            // 'country' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
+        ]);
+        $restaurant->address = $request->address;
+        $restaurant->city = $request->city;
+        $restaurant->state = $request->state;
+        $restaurant->zip_code = $request->zip_code;
+        $restaurant->country = $request->country;
+        $restaurant->latitude = $request->latitude;
+        $restaurant->longitude = $request->longitude;
+        $restaurant->save();
+
+        return redirect()->back()->with('success', 'Business details updated successfully.');
     }
 }
 

@@ -128,6 +128,8 @@ Route::middleware('auth')->group(function () {
             Route::get('/{restaurant}/edit', [RestaurantController::class, 'edit'])->name('edit');
             Route::post('/{restaurant}', [RestaurantController::class, 'update'])->name('update');
             Route::delete('/{restaurant}', [RestaurantController::class, 'destroy'])->name('destroy');
+            Route::get('/business-address/{restaurant}', [RestaurantController::class, 'businessAddress'])->name('businessAddress');
+            Route::post('/update/business-address/{restaurant}', [RestaurantController::class, 'updateBusinessAddress'])->name('businessAddress.update');
         });
         Route::prefix('restaurant-owner')->name('restaurantOwner.')->group(function () {
             Route::get('/', [RestaurantController::class, 'restaurantOwnerIndex'])->name('index');
@@ -146,6 +148,10 @@ Route::middleware('auth')->group(function () {
             Route::get('/{user}/edit', [RestaurantStaffController::class, 'edit'])->name('edit');
             Route::post('/{user}', [RestaurantStaffController::class, 'update'])->name('update');
             Route::delete('/{user}', [RestaurantStaffController::class, 'destroy'])->name('destroy');
+            Route::get('/business-detail', [RestaurantStaffController::class, 'businessDetail'])->name('businessDetail');
+            Route::post('/update/business-detail/{restaurant}', [RestaurantStaffController::class, 'updateRestaurantDetail'])->name('businessDetail.update');
+            Route::get('/business-address', [RestaurantStaffController::class, 'businessDetailMap'])->name('businessDetailMap');
+            Route::post('/update/business-address/{restaurant}', [RestaurantStaffController::class, 'updateRestaurantAddress'])->name('businessAddress.update');
         });
     });
 });

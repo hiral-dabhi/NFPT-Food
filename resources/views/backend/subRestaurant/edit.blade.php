@@ -18,6 +18,24 @@
                 <x-page-title title="Edit Sub Business" pagetitle="Sub Business" />
 
                 <div class="grid grid-cols-1 mt-3">
+                    <div class="flex flex-wrap card-body">
+                        <div class="nav-tabs border-b-tabs">
+                            <ul
+                                class="flex flex-wrap w-full text-sm font-medium text-center text-gray-500 border-b border-gray-100 nav dark:border-gray-700 dark:text-gray-400">
+                                <li>
+                                    <a href="{{ route('subRestaurant.edit',$restaurant->id) }}"
+                                        class="inline-block p-4 active">General</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('subRestaurant.businessAddress',$restaurant->id) }}"
+                                        class="inline-block p-4">Address Detail</a>
+                                </li>
+                                {{-- <li>
+                                    <a href="{{ route('user.settings', $user->id) }}" class="inline-block p-4">Settings</a>
+                                </li> --}}
+                            </ul>
+                        </div>
+                    </div>
                     <div class="card dark:bg-zinc-800 dark:border-zinc-600">
                         <div class="card-body">
                             <form method="POST" action="{{ route('subRestaurant.update', $restaurant->id) }}"
@@ -190,44 +208,14 @@
                                                     <option value="">Select User</option>
                                                     @foreach ($userList as $key => $value)
                                                     <option value="{{ $key }}"{{$key === $restaurant->user_id ? 'selected' : ''}}>
-                                                        {{ Crypt::decryptString($value) }}</option>
+                                                        {{ $value }}</option>
                                                         @endforeach
                                                 </select>
                                                 @error('user_id')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                                 @enderror
                                             </div>
-                                        @endif
-                                        {{-- <div class="mb-4">
-                                            <label for="role"
-                                                class="block mb-2 font-medium text-gray-700 dark:text-gray-100">Employee
-                                                Role<span class="text-sm text-red-600">*</span></label>
-                                            <select name="role" id="role"
-                                                class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-300 placeholder:text-gray-400 dark:text-zinc-100"
-                                                value="{{ old('role') }}">
-                                                <option value="">Select role</option>
-                                                @foreach ($roles as $key => $value)
-                                                    <option value="{{ $key }}">
-                                                        {{ $key }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('role')
-                                                <p class="text-sm text-red-600">{{ $message }}</p>
-                                            @enderror
-                                        </div> --}}
-                                        {{-- <div class="mb-4">
-                                            <label for="confirm_password"
-                                                class="block mb-2 font-medium text-gray-700 dark:text-gray-100">Confirm
-                                                Password<span class="text-sm text-red-600">*</span></label>
-                                            <input type="password" name="confirm_password" id="confirm_password"
-                                                placeholder="Enter confirm password"
-                                                class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-300 placeholder:text-gray-400 dark:text-zinc-100"
-                                                value="{{ old('confirm_password') }}">
-                                            @error('password')
-                                                <p class="text-sm text-red-600">{{ $message }}</p>
-                                            @enderror
-                                        </div> --}}
-                                       
+                                        @endif                            
                                     </div>
                                 </div>
                                 <div class="mt-3 col-span-6 sm:col-span-4 flex items-center justify-center">

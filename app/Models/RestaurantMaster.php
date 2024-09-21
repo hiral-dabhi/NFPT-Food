@@ -26,7 +26,10 @@ class RestaurantMaster extends Model
         'contact_number',
         'open_at',
         'close_at',
-        'description'
+        'description',
+        'is_closed',
+        'latitude',
+        'longitude'
     ];
 
     public function userDetail()

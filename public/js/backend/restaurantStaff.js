@@ -20,7 +20,7 @@ var restaurant = function () {
                 }
             },
             columns: [
-                { data: 'id' , class: "p-4 pr-8 border border-t-0  border-gray-50 dark:border-zinc-600" },
+                { data: 'id', class: "p-4 pr-8 border border-t-0  border-gray-50 dark:border-zinc-600" },
                 { data: 'restaurant_name', class: "p-4 pr-8 border border-t-0 border-l-0 border-gray-50 dark:border-zinc-600" },
                 { data: 'name', class: "p-4 pr-8 border border-t-0 border-l-0 border-gray-50 dark:border-zinc-600" },
                 { data: 'email', class: "p-4 pr-8 border border-t-0 border-l-0 border-gray-50 dark:border-zinc-600" },
@@ -62,7 +62,7 @@ var restaurant = function () {
                     number: true,
                     minlength: 10,
                     maxlength: 10,
-                },            
+                },
                 status: "required",
                 password: {
                     required: true,
@@ -72,7 +72,7 @@ var restaurant = function () {
                     equalTo: "#password",
                 },
                 restaurant_id: {
-                    required:true,
+                    required: true,
                 }
             },
             messages: {
@@ -105,7 +105,7 @@ var restaurant = function () {
                     number: true,
                     minlength: 10,
                     maxlength: 10,
-                },      
+                },
                 status: "required",
                 password: {
                     required: false,
@@ -115,7 +115,7 @@ var restaurant = function () {
                     equalTo: "#password",
                 },
                 restaurant_id: {
-                    required:true,
+                    required: true,
                 }
             },
             messages: {
@@ -165,7 +165,7 @@ var restaurant = function () {
                 }
             },
             columns: [
-                { data: 'id' , class: "p-4 pr-8 border border-t-0  border-gray-50 dark:border-zinc-600" },
+                { data: 'id', class: "p-4 pr-8 border border-t-0  border-gray-50 dark:border-zinc-600" },
                 { data: 'name', class: "p-4 pr-8 border border-t-0 border-l-0 border-gray-50 dark:border-zinc-600" },
                 { data: 'email', class: "p-4 pr-8 border border-t-0 border-l-0 border-gray-50 dark:border-zinc-600" },
                 { data: 'contact_number', class: "p-4 pr-8 border border-t-0 border-l-0 border-gray-50 dark:border-zinc-600" },
@@ -178,7 +178,7 @@ var restaurant = function () {
             ],
             dom: '<"top"lfB>rt<"bottom"ip><"clear">',
             buttons: [
-                {   
+                {
                     extend: 'copy',
                     className: 'bg-violet-500 text-white',
                     title: 'NFPT'
@@ -223,7 +223,7 @@ var restaurant = function () {
                 },
                 country: {
                     required: true,
-                },               
+                },
                 status: "required",
                 password: {
                     required: true,
@@ -288,7 +288,7 @@ var restaurant = function () {
                     maxlength: 10,
                 },
                 // description: "required",
-             
+
                 status: "required",
                 password: {
                     required: true,
@@ -311,22 +311,166 @@ var restaurant = function () {
                     maxlength: "Contact requires 10 digits"
                 },
                 // description: "Please enter description",
-              
+
                 status: "Please enter status",
-               
+
             }
         });
     };
-   
-    return {
-        init: function () {
-            initIndex();
-        },
-        create: function () {
-            createRestaurantValidation();
-        },
-        edit: function () {
-            editRestaurantValidation();
-        },
+
+    var businessDetailValidaiton = function () {
+        $("#business-detail_form_edit").validate({
+            rules: {
+                name: {
+                    required: true,
+                    minlength: 3
+                },
+                description: {
+                    maxlength: 255
+                },
+                open_at: {
+                    required: true
+                },
+                close_at: {
+                    required: true
+                },
+                is_closed: {
+                    required: true
+                }
+            },
+            messages: {
+                name: {
+                    required: "Please enter the business name.",
+                    minlength: "The name must be at least 3 characters long."
+                },
+                description: {
+                    maxlength: "The description cannot exceed 255 characters."
+                },
+                open_at: {
+                    required: "Please specify the opening time."
+                },
+                close_at: {
+                    required: "Please specify the closing time."
+                },
+                is_closed: {
+                    required: "Please indicate if the business is temporarily closed."
+                }
+            },
+            errorElement: 'p',
+            errorPlacement: function (error, element) {
+                error.addClass('text-sm text-red-600');
+                error.insertAfter(element);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('border-red-500');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('border-red-500');
+            }
+        });
     };
+
+    var businessAddressValidation = function(){
+        $("#business-address_form_edit").validate({
+            rules: {
+                address: {
+                    required: true,
+                    minlength: 5
+                },
+                latitude: {
+                    required: true,
+                    number: true,
+                    min: -90,
+                    max: 90
+                },
+                longitude: {
+                    required: true,
+                    number: true,
+                    min: -180,
+                    max: 180
+                },
+                city: {
+                    required: true,
+                    minlength: 2
+                },
+                state: {
+                    required: true,
+                    minlength: 2
+                },
+                country: {
+                    required: true
+                },
+                zip_code: {
+                    required: true,
+                    digits: true,
+                    minlength: 5,
+                    maxlength: 10
+                }
+            },
+            messages: {
+                address: {
+                    required: "Please enter the address.",
+                    minlength: "The address must be at least 5 characters long."
+                },
+                latitude: {
+                    required: "Please enter the latitude.",
+                    number: "Please enter a valid latitude between -90 and 90.",
+                    min: "The latitude cannot be less than -90.",
+                    max: "The latitude cannot be greater than 90."
+                },
+                longitude: {
+                    required: "Please enter the longitude.",
+                    number: "Please enter a valid longitude between -180 and 180.",
+                    min: "The longitude cannot be less than -180.",
+                    max: "The longitude cannot be greater than 180."
+                },
+                city: {
+                    required: "Please enter the city.",
+                    minlength: "The city name must be at least 2 characters long."
+                },
+                state: {
+                    required: "Please enter the state.",
+                    minlength: "The state name must be at least 2 characters long."
+                },
+                country: {
+                    required: "Please select the country."
+                },
+                zip_code: {
+                    required: "Please enter the zip code.",
+                    digits: "The zip code must contain only digits.",
+                    minlength: "The zip code must be at least 5 characters long.",
+                    maxlength: "The zip code cannot be longer than 10 characters."
+                }
+            },
+            errorElement: 'p',
+            errorPlacement: function(error, element) {
+                error.addClass('text-sm text-red-600');
+                error.insertAfter(element);
+            },
+            highlight: function(element, errorClass, validClass) {
+                $(element).addClass('border-red-500');
+            },
+            unhighlight: function(element, errorClass, validClass) {
+                $(element).removeClass('border-red-500');
+            }
+        });
+    }
+
+return {
+    init: function () {
+        initIndex();
+    },
+    create: function () {
+        createRestaurantValidation();
+    },
+    edit: function () {
+        editRestaurantValidation();
+    },
+    businessDetail:function(){
+        businessDetailValidaiton();
+    },
+    businessAddress:function(){
+        businessAddressValidation();
+    }
+};
 }();
