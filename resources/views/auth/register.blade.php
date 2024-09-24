@@ -201,6 +201,17 @@
                                 <input id="password-confirm" type="password" placeholder="Confirm Password" class="form-control" name="confirmed" autocomplete="new-password">
                             </div>
                         </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6 offset-md-4">
+                                {!! NoCaptcha::renderJs() !!}
+                                {!! NoCaptcha::display() !!}
+                                @error('g-recaptcha-response')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                                <span id="captcha-error" class="text-danger" style="display:none;">Please complete the
+                                    captcha.</span>
+                            </div>
+                        </div>
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">

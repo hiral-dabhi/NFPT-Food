@@ -187,7 +187,7 @@
                                                     <option value="">Select User</option>
                                                     @foreach ($userList as $key => $value)
                                                     <option value="{{ $key }}">
-                                                        {{ Crypt::decryptString($value) }}</option>
+                                                        {{ $value }}</option>
                                                         @endforeach
                                                 </select>
                                                 @error('user_id')

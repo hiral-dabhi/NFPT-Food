@@ -27,22 +27,24 @@
                                     <div class="col-span-12 lg:col-span-6">
                                         <div class="mb-4">
                                             <label for="firstname"
-                                                class="block mb-2 font-medium text-gray-700 dark:text-gray-100">First Name<span
-                                                    class="text-sm text-red-600">*</span></label>
-                                            <input type="text" name="firstname" id="firstname" placeholder="Enter first Name"
+                                                class="block mb-2 font-medium text-gray-700 dark:text-gray-100">First
+                                                Name<span class="text-sm text-red-600">*</span></label>
+                                            <input type="text" name="firstname" id="firstname"
+                                                placeholder="Enter first Name"
                                                 class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-300 placeholder:text-gray-400 dark:text-zinc-100""
-                                                value="{{ old('firstname',Crypt::decryptString($user->firstname) ?? '') }}">
+                                                value="{{ old('firstname', Crypt::decryptString($user->firstname) ?? '') }}">
                                             @error('firstname')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
                                         </div>
                                         <div class="mb-4">
                                             <label for="lastname"
-                                                class="block mb-2 font-medium text-gray-700 dark:text-gray-100">Last Name<span
-                                                    class="text-sm text-red-600">*</span></label>
-                                            <input type="text" name="lastname" id="lastname" placeholder="Enter Last Name"
+                                                class="block mb-2 font-medium text-gray-700 dark:text-gray-100">Last
+                                                Name<span class="text-sm text-red-600">*</span></label>
+                                            <input type="text" name="lastname" id="lastname"
+                                                placeholder="Enter Last Name"
                                                 class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-300 placeholder:text-gray-400 dark:text-zinc-100""
-                                                value="{{ old('lastname',Crypt::decryptString($user->lastname) ?? '') }}">
+                                                value="{{ old('lastname', Crypt::decryptString($user->lastname) ?? '') }}">
                                             @error('lastname')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
@@ -53,51 +55,55 @@
                                                     class="text-sm text-red-600">*</span></label>
                                             <input type="email" name="email" id="email" placeholder="Enter Email"
                                                 class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-300 placeholder:text-gray-400 dark:text-zinc-100""
-                                                value="{{ old('email',$user->email ?? '') }}">
+                                                value="{{ old('email', $user->email ?? '') }}">
                                             @error('email')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
                                         </div>
                                         <div class="mb-4">
                                             <label for="contact_number"
-                                                class="block mb-2 font-medium text-gray-700 dark:text-gray-100">Contact Number<span
-                                                    class="text-sm text-red-600">*</span></label>
-                                            <input type="number" name="contact_number" id="contact_number" placeholder="Enter Contact Number"
+                                                class="block mb-2 font-medium text-gray-700 dark:text-gray-100">Contact
+                                                Number<span class="text-sm text-red-600">*</span></label>
+                                            <input type="number" name="contact_number" id="contact_number"
+                                                placeholder="Enter Contact Number"
                                                 class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-300 placeholder:text-gray-400 dark:text-zinc-100""
-                                                value="{{ old('contact_number',$user->contact_number ?? '') }}">
+                                                value="{{ old('contact_number', $user->contact_number ?? '') }}">
                                             @error('contact_number')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
                                         </div>
                                         <div class="mb-4">
                                             <label for="business_name"
-                                                class="block mb-2 font-medium text-gray-700 dark:text-gray-100">Business Name<span
-                                                    class="text-sm text-red-600">*</span></label>
-                                            <input type="text" name="business_name" id="business_name" placeholder="Enter Business Name"
+                                                class="block mb-2 font-medium text-gray-700 dark:text-gray-100">Business
+                                                Name<span class="text-sm text-red-600">*</span></label>
+                                            <input type="text" name="business_name" id="business_name"
+                                                placeholder="Enter Business Name"
                                                 class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-300 placeholder:text-gray-400 dark:text-zinc-100""
-                                                value="{{ old('business_name',Crypt::decryptString($user->restaurantDetail->name) ?? '') }}">
+                                                value="{{ old('business_name', Crypt::decryptString($user->restaurantDetail->name) ?? '') }}">
                                             @error('business_name')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
                                         </div>
                                         <div class="mb-4">
                                             <label for="business_email"
-                                                class="block mb-2 font-medium text-gray-700 dark:text-gray-100">Business Email<span
-                                                    class="text-sm text-red-600">*</span></label>
-                                            <input type="text" name="business_email" id="business_email" placeholder="Enter Business Email"
+                                                class="block mb-2 font-medium text-gray-700 dark:text-gray-100">Business
+                                                Email<span class="text-sm text-red-600">*</span></label>
+                                            <input type="text" name="business_email" id="business_email"
+                                                placeholder="Enter Business Email"
                                                 class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-300 placeholder:text-gray-400 dark:text-zinc-100""
-                                                value="{{ old('business_email',$user->restaurantDetail->email ?? '') }}">
+                                                value="{{ old('business_email', $user->restaurantDetail->email ?? '') }}">
                                             @error('business_email')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
                                         </div>
                                         <div class="mb-4">
                                             <label for="business_contact"
-                                                class="block mb-2 font-medium text-gray-700 dark:text-gray-100">Business Contact Number<span
-                                                    class="text-sm text-red-600">*</span></label>
-                                            <input type="number" name="business_contact" id="business_contact" placeholder="Enter Business Email"
+                                                class="block mb-2 font-medium text-gray-700 dark:text-gray-100">Business
+                                                Contact Number<span class="text-sm text-red-600">*</span></label>
+                                            <input type="number" name="business_contact" id="business_contact"
+                                                placeholder="Enter Business Email"
                                                 class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-300 placeholder:text-gray-400 dark:text-zinc-100""
-                                                value="{{ old('business_contact') }}">
+                                                value="{{ old('business_contact', $user->restaurantDetail->contact_number) }}">
                                             @error('business_contact')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
@@ -105,17 +111,20 @@
                                         <div class="mb-4">
                                             <label for="password"
                                                 class="block mb-2 font-medium text-gray-700 dark:text-gray-100">Password</label>
-                                            <input type="password" name="password" id="password" placeholder="Enter password"
-                                                class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-300 placeholder:text-gray-400 dark:text-zinc-100""
-                                                >
+                                            <input type="password" name="password" id="password"
+                                                placeholder="Enter password"
+                                                class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-300 placeholder:text-gray-400 dark:text-zinc-100" autocomplete="new-password" 
+                                                autocorrect="off" spellcheck="false">
                                             @error('password')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
                                         </div>
                                         <div class="mb-4">
                                             <label for="confirm_password"
-                                                class="block mb-2 font-medium text-gray-700 dark:text-gray-100">Confirm Password</label>
-                                            <input type="password" name="confirm_password" id="confirm_password" placeholder="Enter confirm password"
+                                                class="block mb-2 font-medium text-gray-700 dark:text-gray-100">Confirm
+                                                Password</label>
+                                            <input type="password" name="confirm_password" id="confirm_password"
+                                                placeholder="Enter confirm password"
                                                 class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-300 placeholder:text-gray-400 dark:text-zinc-100""
                                                 value="{{ old('confirm_password') }}">
                                             @error('confirm_password')
@@ -153,7 +162,7 @@
                                                 class="block mb-2 font-medium text-gray-700 dark:text-gray-100">Address<span
                                                     class="text-sm text-red-600">*</span></label>
                                             <textarea type="text" name="address" id="address" placeholder="Enter address"
-                                                class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-300 placeholder:text-gray-400 dark:text-zinc-100">{{ old('address',$user->restaurantDetail->address ?? '') }}</textarea>
+                                                class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-300 placeholder:text-gray-400 dark:text-zinc-100">{{ old('address', $user->restaurantDetail->address ?? '') }}</textarea>
                                             @error('address')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
@@ -162,10 +171,9 @@
                                             <label for="city"
                                                 class="block mb-2 font-medium text-gray-700 dark:text-gray-100">City<span
                                                     class="text-sm text-red-600">*</span></label>
-                                            <input type="text" name="city" id="city"
-                                                placeholder="Enter city"
+                                            <input type="text" name="city" id="city" placeholder="Enter city"
                                                 class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-300 placeholder:text-gray-400 dark:text-zinc-100"
-                                                value="{{ old('city',$user->restaurantDetail->city ?? '') }}">
+                                                value="{{ old('city', $user->restaurantDetail->city ?? '') }}">
                                             @error('city')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
@@ -177,7 +185,7 @@
                                             <input type="text" name="state" id="state"
                                                 placeholder="Enter state"
                                                 class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-300 placeholder:text-gray-400 dark:text-zinc-100"
-                                                value="{{ old('state',$user->restaurantDetail->state ?? '') }}">
+                                                value="{{ old('state', $user->restaurantDetail->state ?? '') }}">
                                             @error('state')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
@@ -191,7 +199,8 @@
                                                 value="{{ old('country') }}">
                                                 <option value="">Select Country</option>
                                                 @foreach ($countryList as $key => $value)
-                                                    <option value="{{ $key }}" {{$user->restaurantDetail->country == $key ? 'selected' : ''}}>
+                                                    <option value="{{ $key }}"
+                                                        {{ $user->restaurantDetail->country == $key ? 'selected' : '' }}>
                                                         {{ $value }}</option>
                                                 @endforeach
                                             </select>
@@ -201,12 +210,12 @@
                                         </div>
                                         <div class="mb-4">
                                             <label for="zip_code"
-                                                class="block mb-2 font-medium text-gray-700 dark:text-gray-100">Zip Code<span
-                                                    class="text-sm text-red-600">*</span></label>
+                                                class="block mb-2 font-medium text-gray-700 dark:text-gray-100">Zip
+                                                Code<span class="text-sm text-red-600">*</span></label>
                                             <input type="text" name="zip_code" id="zip_code"
                                                 placeholder="Enter Zip Code"
                                                 class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-300 placeholder:text-gray-400 dark:text-zinc-100"
-                                                value="{{ old('zip_code',$user->restaurantDetail->zip_code ?? '') }}">
+                                                value="{{ old('zip_code', $user->restaurantDetail->zip_code ?? '') }}">
                                             @error('zip_code')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror

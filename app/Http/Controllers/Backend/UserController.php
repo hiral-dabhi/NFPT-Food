@@ -10,7 +10,7 @@ use App\Http\Requests\UserRequest;
 use App\Http\Requests\SubAdminUpdateRequest;
 use App\Models\User;
 use App\Services\GeneralService;
-use App\Services\userService;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 

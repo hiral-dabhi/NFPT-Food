@@ -202,8 +202,8 @@
                                             <label for="zip_code"
                                                 class="block mb-2 font-medium text-gray-700 dark:text-gray-100">Zip Code<span
                                                     class="text-sm text-red-600">*</span></label>
-                                            <input type="text" name="zip_code" id="zip_code"
-                                                placeholder="Enter zip_code"
+                                            <input type="number" name="zip_code" id="zip_code"
+                                                placeholder="Enter Zip Code"
                                                 class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-300 placeholder:text-gray-400 dark:text-zinc-100"
                                                 value="{{ old('zip_code') }}">
                                             @error('zip_code')

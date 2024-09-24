@@ -10,7 +10,7 @@ use App\Http\Requests\SubAdminUpdateRequest;
 use App\Models\Country;
 use App\Models\Currency;
 use App\Models\User;
-use App\Services\currencyService;
+use App\Services\CurrencyService;
 use App\Services\GeneralService;
 use Illuminate\Http\Request;
 

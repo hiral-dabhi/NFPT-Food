@@ -34,17 +34,19 @@ class SubCategoryController extends Controller
 
     public function fetch(Request $request)
     {
-        $columns = ['id', 'title','category_id', 'status'];
-        $response = $this->subCategoryService->fetch($request->all(),$columns);
+        $columns = ['id', 'title', 'category_id', 'status'];
+        $response = $this->subCategoryService->fetch($request->all(), $columns);
         $data = [];
         foreach ($response['data'] as $value) {
-            $data[] = [
-                'id' => $value->id,
-                'category_name' => Crypt::decryptString($value->categoryDetail->title) ?? '',
-                'title' => Crypt::decryptString($value->title) ?? '',
-                'status' => $value->status == '0' ? 'Active' : 'In Active' ,
-                'actions' => '<div class="flex">' . editBtn(route('subCategory.edit', $value->id)) . ' ' . deleteBtn(route('subCategory.destroy', $value->id)) . '</div>',
-            ];
+            if(!empty($value->categoryDetail->title)){
+                $data[] = [
+                    'id' => $value->id,
+                    'category_name' => !empty($value->categoryDetail->title) ? Crypt::decryptString($value->categoryDetail->title) : '',
+                    'title' => !empty($value->title) ? Crypt::decryptString($value->title) : '',
+                    'status' => $value->status == '0' ? 'Active' : 'In Active',
+                    'actions' => '<div class="flex">' . editBtn(route('subCategory.edit', $value->id)) . ' ' . deleteBtn(route('subCategory.destroy', $value->id)) . '</div>',
+                ];
+            }
         }
         return response()->json([
             'draw' => intval($request->input('draw')),
@@ -57,7 +59,7 @@ class SubCategoryController extends Controller
     public function create()
     {
         $categoryList = $this->generalService->getCategoryList();
-        return view('backend.subCategory.create',compact('categoryList'));
+        return view('backend.subCategory.create', compact('categoryList'));
     }
 
     public function store(SubCategoryRequest $request)
@@ -69,7 +71,7 @@ class SubCategoryController extends Controller
     public function edit(SubCategory $subCategory)
     {
         $categoryList = $this->generalService->getCategoryList();
-        return view('backend.subCategory.edit', compact('subCategory','categoryList'));
+        return view('backend.subCategory.edit', compact('subCategory', 'categoryList'));
     }
 
     public function update(SubCategoryUpdateRequest $request, SubCategory $subCategory)
@@ -83,16 +85,16 @@ class SubCategoryController extends Controller
         $this->subCategoryService->delete($subCategory);
         return redirect()->route('subCategory.index')->with('success', 'Deleted successfully!');
     }
-    public function getCountryName(Request $request){
-        $category = Category::where('id',$request->id)->first();
-        if(empty($category)){
+    public function getCountryName(Request $request)
+    {
+        $category = Category::where('id', $request->id)->first();
+        if (empty($category)) {
             return '';
         }
-        $countryName = Country::where('id',$category->country_id)->first();
-        if(empty($countryName)){
+        $countryName = Country::where('id', $category->country_id)->first();
+        if (empty($countryName)) {
             return '';
         }
         return ucfirst($countryName->name) ?? '';
     }
 }
-

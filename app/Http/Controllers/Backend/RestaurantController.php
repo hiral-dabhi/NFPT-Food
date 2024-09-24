@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RestaurantOwnerRequest;
 use App\Http\Requests\RestaurantOwnerUpdateRequest;
 use App\Http\Requests\RestaurantRequest;
 use App\Http\Requests\RestaurantUpdateRequest;
@@ -137,7 +138,7 @@ class RestaurantController extends Controller
         return view('backend.restaurantOwner.create', compact('countryList'));
     }
 
-    public function restaurantOwnerStore(RestaurantRequest $request)
+    public function restaurantOwnerStore(RestaurantOwnerRequest $request)
     {
         $this->restaurantService->storeOwner($request->all());
         return redirect()->route('restaurantOwner.index')->with('success', 'Saved successfully!');

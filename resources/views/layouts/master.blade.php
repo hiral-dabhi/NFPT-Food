@@ -35,7 +35,6 @@
         <!-- Scripts -->
         @vite(['resources/js/app.js'])
         <script type="text/javascript" src="{{ asset('js/libs/jquery.validate.min.js') }}"></script>
-        @livewireScripts
     </body>
 
 </html>

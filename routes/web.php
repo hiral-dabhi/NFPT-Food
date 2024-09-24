@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\SubAdminController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +24,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
+Route::get('/clear-cache', function() {
+    // Clear the application cache
+    Artisan::call('cache:clear');
+    return "Application cache cleared!";
+});
 
+Route::get('/config-cache', function() {
+    // Clear and cache the configuration
+    Artisan::call('config:cache');
+    return "Configuration cache cleared!";
+});
 Auth::routes();
 Route::middleware('auth')->group(function () {        
     Route::get('/dashboard', [HomeController::class, 'index'])->name('home');
