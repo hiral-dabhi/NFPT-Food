@@ -17,26 +17,8 @@ class CountryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:countries',
+            'name' => 'required|unique:countries,name,NULL,id,deleted_at,NULL',
             'status' => 'required',
         ];
     }
-
-    // public function messages()
-    // {
-    //     return [
-    //         'short_name.required' => 'Please enter a short name',
-    //         'nas_type.required' => 'Please select a NAS type',
-    //         'ip_address.required' => 'Please enter an IP address',
-    //         'ip_address.ipv4' => 'Please enter a valid IP address',
-    //         'secret.required' => 'Please enter a secret',
-    //         'coa_port.required' => 'Please enter COA Port',
-    //         'coa_port.digits' => 'COA Port must be a numeric value',
-    //         'api_port.required' => 'Please enter API Port',
-    //         'api_port.digits' => 'API Port must be a numeric value',
-    //         'interim_time.required' => 'Please enter Interim Time',
-    //         'interim_time.digits' => 'Interim Time must be a numeric value',
-    //         'log_server.required' => 'Please select a Log Server',
-    //     ];
-    // }
 }

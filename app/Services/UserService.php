@@ -11,7 +11,7 @@ class UserService
 {
     public function fetch($requestData,$columns)
     {
-        $query = User::role('User');
+        $query = User::role('Client/Customer');
         if (! empty($requestData['search']['value'])) {
             $searchValue = $requestData['search']['value'];
             $query->where(function ($q) use ($searchValue) {

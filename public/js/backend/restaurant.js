@@ -229,15 +229,32 @@ var restaurant = function () {
     };
 
     var createRestaurantOwnerValidation = function () {
-        var userRole = "{{getCurrentUserRoleName()}}";
-        $('.restaurant-create-form').validate({
+        $('.restaurant-owner-create-form').validate({
             rules: {
-                name: "required",
+                firstname: {
+                    required: true,
+                },
+                lastname: {
+                    required: true,
+                },
                 email: {
                     required: true,
                     email: true,
                 },
                 contact_number: {
+                    required: true,
+                    number: true,
+                    minlength: 10,
+                    maxlength: 10,
+                },
+                business_name: {
+                    required: true,
+                },
+                business_email: {
+                    required: true,
+                    email: true,
+                },
+                business_contact: {
                     required: true,
                     number: true,
                     minlength: 10,
@@ -254,57 +271,95 @@ var restaurant = function () {
                 },
                 country: {
                     required: true,
-                },               
-                status: "required",
+                },
+                zip_code: {
+                    required: true,
+                    number: true,
+                    minlength: 5,
+                    maxlength: 10,
+                },
+                status: {
+                    required: true,
+                },
                 password: {
                     required: true,
                 },
-                confirmed: {
+                confirm_password: {
                     required: true,
                     equalTo: "#password",
                 },
             },
             messages: {
-                name: "Please enter name",
+                firstname: "Please enter first name",
+                lastname: "Please enter last name",
                 email: {
-                    required: "Please enter email",
-                    email: "Please enter valid email",
+                    required: "Please enter an email",
+                    email: "Please enter a valid email",
                 },
                 contact_number: {
-                    required: "Please enter Contact Number",
-                    number: "Please enter valid contact",
-                    minlength: "Contact requires 10 digits",
-                    maxlength: "Contact requires 10 digits"
+                    required: "Please enter a contact number",
+                    number: "Please enter a valid number",
+                    minlength: "Contact number must be 10 digits",
+                    maxlength: "Contact number must be 10 digits"
+                },
+                business_name: "Please enter business name",
+                business_email: {
+                    required: "Please enter business email",
+                    email: "Please enter a valid business email",
+                },
+                business_contact: {
+                    required: "Please enter business contact number",
+                    number: "Please enter a valid number",
+                    minlength: "Business contact number must be 10 digits",
+                    maxlength: "Business contact number must be 10 digits"
                 },
                 address: "Please enter address",
-                status: "Please enter status",
-                city: {
-                    required: "Please select city",
+                city: "Please enter city",
+                state: "Please enter state",
+                country: "Please select a country",
+                zip_code: {
+                    required: "Please enter a zip code",
+                    number: "Please enter a valid zip code",
+                    minlength: "Zip code must be at least 5 digits",
+                    maxlength: "Zip code cannot exceed 10 digits",
                 },
-                state: {
-                    required: "Please select state",
+                status: "Please select status",
+                password: "Please enter a password",
+                confirm_password: {
+                    required: "Please confirm your password",
+                    equalTo: "Passwords do not match",
                 },
-                country: {
-                    required: "Please select state",
-                }
             }
         });
+        
     };
 
     var editRestaurantOwnerValidation = function () {
+       
         $('.restaurant-edit-form').validate({
             rules: {
-                name: "required",
+                firstname: {
+                    required: true,
+                },
+                lastname: {
+                    required: true,
+                },
                 email: {
                     required: true,
                     email: true,
+                },
+                contact_number: {
+                    required: true,
+                    number: true,
+                    minlength: 10,
+                    maxlength: 10,
+                },
+                business_name: {
+                    required: true,
                 },
                 business_email: {
                     required: true,
                     email: true,
-                },
-                business_name: {
-                    required: true,
                 },
                 business_contact: {
                     required: true,
@@ -312,39 +367,75 @@ var restaurant = function () {
                     minlength: 10,
                     maxlength: 10,
                 },
-                contact: {
+                address: {
+                    required: true,
+                },
+                city: {
+                    required: true,
+                },
+                state: {
+                    required: true,
+                },
+                country: {
+                    required: true,
+                },
+                zip_code: {
                     required: true,
                     number: true,
-                    minlength: 10,
+                    minlength: 5,
                     maxlength: 10,
                 },
-                // description: "required",
-             
-                status: "required",
-                password: {
+                status: {
                     required: true,
                 },
-                confirmed: {
-                    required: true,
+                password: {
+                    required: false,
+                },
+                confirm_password: {
+                    required: false,
                     equalTo: "#password",
                 },
             },
             messages: {
-                name: "Please enter name",
+                firstname: "Please enter first name",
+                lastname: "Please enter last name",
                 email: {
-                    required: "Please enter email",
-                    email: "Please enter valid email",
+                    required: "Please enter an email",
+                    email: "Please enter a valid email",
                 },
-                contact: {
-                    required: "Please enter Contact",
-                    number: "Please enter valid contact",
-                    minlength: "Contact requires 10 digits",
-                    maxlength: "Contact requires 10 digits"
+                contact_number: {
+                    required: "Please enter a contact number",
+                    number: "Please enter a valid number",
+                    minlength: "Contact number must be 10 digits",
+                    maxlength: "Contact number must be 10 digits"
                 },
-                // description: "Please enter description",
-              
-                status: "Please enter status",
-               
+                business_name: "Please enter business name",
+                business_email: {
+                    required: "Please enter business email",
+                    email: "Please enter a valid business email",
+                },
+                business_contact: {
+                    required: "Please enter business contact number",
+                    number: "Please enter a valid number",
+                    minlength: "Business contact number must be 10 digits",
+                    maxlength: "Business contact number must be 10 digits"
+                },
+                address: "Please enter address",
+                city: "Please enter city",
+                state: "Please enter state",
+                country: "Please select a country",
+                zip_code: {
+                    required: "Please enter a zip code",
+                    number: "Please enter a valid zip code",
+                    minlength: "Zip code must be at least 5 digits",
+                    maxlength: "Zip code cannot exceed 10 digits",
+                },
+                status: "Please select status",
+                password: "Please enter a password",
+                confirm_password: {
+                    required: "Please confirm your password",
+                    equalTo: "Passwords do not match",
+                },
             }
         });
     };

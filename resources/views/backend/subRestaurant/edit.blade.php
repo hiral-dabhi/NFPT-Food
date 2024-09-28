@@ -114,16 +114,16 @@
                                                     class="text-sm text-red-600">*</span></label>
                                             <div class="mt-1 flex items-center">
                                                 <div class="flex items-center" style="margin-right: 10px">
-                                                    <input type="radio" id="status1" name="status" value="1"
-                                                        {{ old('status', $restaurant->status) == '1' ? 'checked' : '' }}
+                                                    <input type="radio" id="status1" name="status" value="0"
+                                                        {{ old('status', $restaurant->status) == '0' ? 'checked' : '' }}
                                                         class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
                                                     <label for="status1"
                                                         class="ml-2 block text-sm leading-5 text-gray-700">Active</label>
                                                 </div>
 
                                                 <div class="flex items-center">
-                                                    <input type="radio" id="status2" name="status" value="0"
-                                                        {{ old('status', $restaurant->status) == '0' ? 'checked' : '' }}
+                                                    <input type="radio" id="status2" name="status" value="1"
+                                                        {{ old('status', $restaurant->status) == '1' ? 'checked' : '' }}
                                                         class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
                                                     <label for="status2"
                                                         class="ml-2 block text-sm leading-5 text-gray-700">Inactive</label>

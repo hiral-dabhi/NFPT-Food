@@ -40,4 +40,8 @@ class RestaurantMaster extends Model
     {
         return $this->belongsTo(Country::class, 'country', 'id');
     }
+    public function menus()
+    {
+        return $this->hasMany(Menu::class, 'restaurant_id', 'id');
+    }
 }

@@ -4,11 +4,8 @@ namespace App\Services;
 
 use App\Models\RestaurantMaster;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
-use Spatie\Activitylog\Contracts\Activity;
-use Spatie\Permission\Models\Role;
 
 class RestaurantService
 {
@@ -72,6 +69,7 @@ class RestaurantService
             'state' => $requestData['state'],
             'zip_code' => $requestData['zip_code'],
             'open_at' => $requestData['open_at'],
+            'status' => $requestData['status'],
             'close_at' => $requestData['close_at'],
             'contact_number' => $requestData['contact_number'],
             'description' => $requestData['description']
@@ -88,6 +86,7 @@ class RestaurantService
             'city' => $requestData['city'],
             'state' => $requestData['state'],
             'country' => $requestData['country'],
+            'status' => $requestData['status'],
             'zip_code' => $requestData['zip_code'],
             'open_at' => $requestData['open_at'],
             'close_at' => $requestData['close_at'],
@@ -203,8 +202,12 @@ class RestaurantService
     }
     public function deleteOwner($user)
     {
-        $user->delete();
-        $user->restaurantDetail()->delete();
+        $restaurant = $user->restaurantDetail;
+        if ($restaurant) {
+            $restaurant->menus()->delete();
+            $restaurant->delete();
+        }    
+        $user->delete();    
         return $user;
     }
 }

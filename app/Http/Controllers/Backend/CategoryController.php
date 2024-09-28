@@ -33,13 +33,15 @@ class CategoryController extends Controller
         $response = $this->categoryService->fetch($request->all(),$columns);
         $data = [];
         foreach ($response['data'] as $value) {
-            $data[] = [
-                'id' => $value->id,
-                'country_name' => $value->countryDetail->name ?? '',
-                'title' => Crypt::decryptString($value->title) ?? '',
-                'status' => $value->status == '1' ? 'Active' : 'In Active' ,
-                'actions' => '<div class="flex">' . editBtn(route('category.edit', $value->id)) . ' ' . deleteBtn(route('category.destroy', $value->id)) . '</div>',
-            ];
+            if(!empty($value->countryDetail)){
+                $data[] = [
+                    'id' => $value->id,
+                    'country_name' => $value->countryDetail->name ?? '',
+                    'title' => Crypt::decryptString($value->title) ?? '',
+                    'status' => $value->status == '1' ? 'Active' : 'In Active' ,
+                    'actions' => '<div class="flex">' . editBtn(route('category.edit', $value->id)) . ' ' . deleteBtn(route('category.destroy', $value->id)) . '</div>',
+                ];
+            }
         }
         return response()->json([
             'draw' => intval($request->input('draw')),

@@ -110,7 +110,13 @@
     
                         </ul>
                     </li>
-              
+                    <li>
+                        <a href="{{ route('orders.index') }}"
+                            class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
+                            <i data-feather="home" fill="#545a6d33"></i>
+                            <span data-key="t-dashboard"> Orders</span>
+                        </a>
+                    </li>
                     <li>
                         <a href="javascript: void(0);" aria-expanded="false"
                             class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear nav-menu hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">

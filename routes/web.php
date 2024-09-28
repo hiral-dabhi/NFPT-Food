@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\CurrencyController;
 use App\Http\Controllers\Backend\DishController;
 use App\Http\Controllers\Backend\MenuController;
+use App\Http\Controllers\Backend\OrdersController;
 use App\Http\Controllers\Backend\RestaurantController;
 use App\Http\Controllers\Backend\RestaurantStaffController;
 use App\Http\Controllers\Backend\RoleController;
@@ -115,6 +116,17 @@ Route::middleware('auth')->group(function () {
             Route::post('/{subCategory}', [SubCategoryController::class, 'update'])->name('update');
             Route::delete('/{subCategory}', [SubCategoryController::class, 'destroy'])->name('destroy');
 
+        });
+
+        Route::prefix('orders')->name('orders.')->group(function () {
+            Route::get('/', [OrdersController::class, 'index'])->name('index');
+            Route::post('/fetch', [OrdersController::class, 'fetch'])->name('fetch');
+            Route::get('/create', [OrdersController::class, 'create'])->name('create');
+            Route::post('/', [OrdersController::class, 'store'])->name('store');
+            Route::get('/{orders}/edit', [OrdersController::class, 'edit'])->name('edit');
+            Route::post('/{orders}', [OrdersController::class, 'update'])->name('update');
+            Route::delete('/{orders}', [OrdersController::class, 'destroy'])->name('destroy');
+            Route::post('/status-update/{orders}', [OrdersController::class, 'updateStatus'])->name('status.update');
         });
 
         Route::prefix('menu')->name('menu.')->group(function () {

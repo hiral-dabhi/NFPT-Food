@@ -8,6 +8,7 @@ use App\Http\Requests\RoleUpdateRequest;
 use App\Services\GeneralService;
 use App\Services\RoleService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
@@ -28,7 +29,14 @@ class RoleController extends Controller
 
     public function fetch(Request $request)
     {
-        $columns = ['roles.id', 'roles.name', 'roles.description', 'roles.created_by', 'roles.created_at','users.name as createdBy'];
+        $columns = [
+            'roles.id', 
+            'roles.name', 
+            'roles.description', 
+            'roles.created_by', 
+            'roles.created_at',
+            DB::raw("CONCAT(users.firstname, ' ', users.lastname) as createdBy")
+        ];
         $response = $this->roleService->fetch($request->all(), $columns);
 
         $data = [];

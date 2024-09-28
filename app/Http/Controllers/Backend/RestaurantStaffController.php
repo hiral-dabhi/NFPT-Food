@@ -38,18 +38,19 @@ class RestaurantStaffController extends Controller
         foreach ($response['data'] as $value) {
             $firstName = !empty($value->firstname) ?  Crypt::decryptString($value->firstname) : '';
             $lastName = !empty($value->lastname) ?  Crypt::decryptString($value->lastname) : '';
-            
-            $data[] = [
-                'id' => $value->id,
-                'restaurant_name' => Crypt::decryptString($value->staffRestaurant->restaurantDetail->name) ?? '',
-                'name' => $firstName.' '.$lastName,
-                'email' => $value->email ?? '',
-                'contact_number' => $value->contact_number ?? '',
-                'created_date' => date('Y-m-d H:i:s', strtotime($value->created_at)),
-                'created_by' => $value->createdBy ?? '',
-                'actions' => '<div class="flex">' . editBtn(route('restaurantStaff.edit', $value->id)) . ' ' . deleteBtn(route('restaurantStaff.destroy', $value->id)) . '</div>',
-
-            ];
+            if(!empty($value->staffRestaurant->restaurantDetail)){
+                $data[] = [
+                    'id' => $value->id,
+                    'restaurant_name' => Crypt::decryptString($value->staffRestaurant->restaurantDetail->name) ?? '',
+                    'name' => $firstName.' '.$lastName,
+                    'email' => $value->email ?? '',
+                    'contact_number' => $value->contact_number ?? '',
+                    'created_date' => date('Y-m-d H:i:s', strtotime($value->created_at)),
+                    'created_by' => $value->createdBy ?? '',
+                    'actions' => '<div class="flex">' . editBtn(route('restaurantStaff.edit', $value->id)) . ' ' . deleteBtn(route('restaurantStaff.destroy', $value->id)) . '</div>',
+    
+                ];
+            }
         }
         return response()->json([
             'draw' => intval($request->input('draw')),

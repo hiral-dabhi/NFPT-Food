@@ -60,6 +60,8 @@ class CurrencyController extends Controller
 
     public function store(CurrencyRequest $request)
     {
+        $fileName = null;
+
         if ($request->hasFile('sign_image')) {
             $file = $request->file('sign_image');
             $destinationPath = public_path('/currency');
