@@ -52,7 +52,7 @@ class UserService
             'password' => Hash::make($requestData['password']),
         ];
         $user = User::create($userArr);
-        $user->assignRole('User');
+        $user->assignRole('Client/Customer');
         return $user;
     }
     public function update($user, $requestData)

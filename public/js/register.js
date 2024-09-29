@@ -110,7 +110,7 @@ $(function () {
 
     $(document).on('change', '#role_id', function () {
         var value = $(this).val();
-        if (value == 'RestaurantUser') {
+        if (value == 'BusinessOwner') {
             $('.restaurant-user-div').removeClass('hidden');
         } else {
             $('.restaurant-user-div').addClass('hidden');

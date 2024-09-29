@@ -12,7 +12,7 @@ class RestaurantService
     public function fetch($requestData, $columns)
     {
         $query = RestaurantMaster::where('type', '0');
-        if (getCurrentUserRoleName() === 'RestaurantUser') {
+        if (getCurrentUserRoleName() === 'BusinessOwner') {
             $query = $query->where('user_id', auth()->user()->id);
         }
         if (getCurrentUserRoleName() === 'SubAdmin') {
@@ -104,7 +104,7 @@ class RestaurantService
 
     public function fetchOwner($requestData, $columns)
     {
-        $query = User::role('restaurantUser');
+        $query = User::role('BusinessOwner');
         if (getCurrentUserRoleName() === 'SubAdmin') {
             $query = $query->where('country', auth()->user()->country);
         }
@@ -156,7 +156,7 @@ class RestaurantService
             'password' => Hash::make($requestData['password']),
         ];
         $user = User::create($userArr);
-        $user->assignRole('restaurantUser');
+        $user->assignRole('BusinessOwner');
 
         RestaurantMaster::create([
             'user_id' => $user->id,

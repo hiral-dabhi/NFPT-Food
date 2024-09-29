@@ -3,8 +3,15 @@
     .error {
         color: rgba(229, 62, 62, 600);
     }
-    .hidden{
-        display:none;
+
+    .hidden {
+        display: none;
+    }
+
+    .disabled {
+        background-color: #d7d7d7 !important;
+        color: #666;
+        cursor: not-allowed;
     }
 </style>
 @php

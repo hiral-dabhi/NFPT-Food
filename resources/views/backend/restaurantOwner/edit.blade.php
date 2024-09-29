@@ -79,7 +79,7 @@
                                             <input type="text" name="business_name" id="business_name"
                                                 placeholder="Enter Business Name"
                                                 class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-300 placeholder:text-gray-400 dark:text-zinc-100""
-                                                value="{{ old('business_name', Crypt::decryptString($user->restaurantDetail->name) ?? '') }}">
+                                                value="{{ old('business_name',!empty($user->restaurantDetail->name)?  Crypt::decryptString($user->restaurantDetail->name) : '') }}">
                                             @error('business_name')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
@@ -103,7 +103,7 @@
                                             <input type="number" name="business_contact" id="business_contact"
                                                 placeholder="Enter Business Email"
                                                 class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-300 placeholder:text-gray-400 dark:text-zinc-100""
-                                                value="{{ old('business_contact', $user->restaurantDetail->contact_number) }}">
+                                                value="{{ old('business_contact', $user->restaurantDetail->contact_number ??'') }}">
                                             @error('business_contact')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
@@ -200,7 +200,7 @@
                                                 <option value="">Select Country</option>
                                                 @foreach ($countryList as $key => $value)
                                                     <option value="{{ $key }}"
-                                                        {{ $user->restaurantDetail->country == $key ? 'selected' : '' }}>
+                                                        {{ !empty($user->restaurantDetail->country) && $user->restaurantDetail->country == $key ? 'selected' : '' }}>
                                                         {{ $value }}</option>
                                                 @endforeach
                                             </select>

@@ -3,7 +3,7 @@
 return [
     'role_exclude' => [
         'SuperAdmin',
-        'restaurantStaff',
+        'BusinessStaff',
         'SubAdmin'
     ],
     'role_exclude_admin' => [

@@ -15,8 +15,8 @@ class RestaurantStaffService
 {
     public function fetch($requestData,$columns)
     {
-        $query = User::role('restaurantStaff')->with('staffRestaurant.restaurantDetail')->where('user_type','2');
-        if(getCurrentUserRoleName() === 'RestaurantUser'){
+        $query = User::role('BusinessStaff')->with('staffRestaurant.restaurantDetail')->where('user_type','2');
+        if(getCurrentUserRoleName() === 'BusinessOwner'){
             $query = $query->where('user_id',auth()->user()->id);
         }
         if(getCurrentUserRoleName() === 'SubAdmin'){
@@ -71,7 +71,7 @@ class RestaurantStaffService
             'password' => Hash::make($requestData['password']),
         ];
         $user = User::create($userArr);
-        $user->assignRole('restaurantStaff');
+        $user->assignRole('BusinessStaff');
 
         StaffHasRestaurant::create([
             'staff_id'=> $user->id,

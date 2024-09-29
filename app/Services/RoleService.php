@@ -71,7 +71,7 @@ class RoleService
         $permissions = $roleData['permission'] ?? '';
 
         $roleData = [
-            'name' => str_replace(' ', '', trim($roleData['name'])),
+            // 'name' => str_replace(' ', '', trim($roleData['name'])),
             'description' => $roleData['description'],
         ];
 
