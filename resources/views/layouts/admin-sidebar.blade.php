@@ -144,7 +144,7 @@
                 @endcan
 
 
-                @if ($getCurrentUserRoleName == 'RestaurantUser')
+                @if ($getCurrentUserRoleName == 'BusinessOwner')
                     @can('professional-profile')
                         <li>
                             <a href="{{ route('professionalProfile.profile') }}"

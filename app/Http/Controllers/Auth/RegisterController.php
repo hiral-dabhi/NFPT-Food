@@ -77,7 +77,7 @@ class RegisterController extends Controller
         ]);
         if ($user) {
             $user->assignRole($data['role_id']);
-            if ($data['role_id'] == 'RestaurantUser') {
+            if ($data['role_id'] == 'BusinessOwner') {
                 $user->update([
                     'address' => $data['address'],
                     'city' => $data['city'],

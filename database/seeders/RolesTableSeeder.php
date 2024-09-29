@@ -33,7 +33,7 @@ class RolesTableSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'name' => 'RestaurantUser',
+                'name' => 'BusinessOwner',
                 'description' => 'Restaurant User / Business User',
                 'guard_name' => 'web',
                 'created_at' => Carbon::now(),

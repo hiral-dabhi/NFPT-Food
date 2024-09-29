@@ -37,35 +37,35 @@ $(function () {
             restaurant_name: {
                 required: {
                     depends: function (element) {
-                        return $("#role_id").val() === "RestaurantUser";
+                        return $("#role_id").val() === "BusinessOwner";
                     },
                 },
             },
             address: {
                 required: {
                     depends: function (element) {
-                        return $("#role_id").val() === "RestaurantUser";
+                        return $("#role_id").val() === "BusinessOwner";
                     },
                 },
             },
             city: {
                 required: {
                     depends: function (element) {
-                        return $("#role_id").val() === "RestaurantUser";
+                        return $("#role_id").val() === "BusinessOwner";
                     },
                 },
             },
             zip_code: {
                 required: {
                     depends: function (element) {
-                        return $("#role_id").val() === "RestaurantUser";
+                        return $("#role_id").val() === "BusinessOwner";
                     },
                 },
             },
             restaurant_contact: {
                 required: {
                     depends: function (element) {
-                        return $("#role_id").val() === "RestaurantUser";
+                        return $("#role_id").val() === "BusinessOwner";
                     },
                 },
             },

@@ -97,7 +97,7 @@ if (!function_exists('getCurrentUserRoleDesc')) {
 if (!function_exists('getRestaurantName')) {
     function getRestaurantName()
     {
-        if (getCurrentUserRoleName() == 'RestaurantUser') {
+        if (getCurrentUserRoleName() == 'BusinessOwner') {
             $user = Auth::user();
             return '- ' . ucfirst(Crypt::decryptString($user->restaurantMasterDetail->name)) ?? '';
         }

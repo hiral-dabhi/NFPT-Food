@@ -66,7 +66,7 @@ class RestaurantController extends Controller
 
     public function create()
     {
-        $userList = $this->generalService->getUserList('restaurantUser');
+        $userList = $this->generalService->getUserList('BusinessOwner');
         $countryList = $this->generalService->getCountryList();
         return view('backend.subRestaurant.create', compact('userList', 'countryList'));
     }
@@ -80,7 +80,7 @@ class RestaurantController extends Controller
     public function edit(RestaurantMaster $restaurant)
     {
         $countryList = $this->generalService->getCountryList();
-        $userList = $this->generalService->getUserList('restaurantUser');
+        $userList = $this->generalService->getUserList('BusinessOwner');
         return view('backend.subRestaurant.edit', compact('restaurant', 'userList', 'countryList'));
     }
 

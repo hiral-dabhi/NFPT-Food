@@ -67,7 +67,7 @@ class GeneralService
 
     public function getRestaurantList()
     {
-        if (getCurrentUserRoleName() === 'RestaurantUser') {
+        if (getCurrentUserRoleName() === 'BusinessOwner') {
             return RestaurantMaster::where('user_id', auth()->user()->id)->pluck('name', 'id')->toArray();
         }
         return RestaurantMaster::pluck('name', 'id')->toArray();
