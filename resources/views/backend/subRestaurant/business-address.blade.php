@@ -165,13 +165,9 @@
     <script type="text/javascript" src="{{ asset('js/libs/jquery.validate.min.js') }}"></script>
     <script src="{{ URL::asset('build/libs/alertifyjs/build/alertify.min.js') }}"></script>
     <script src="{{ asset('js/backend/restaurantStaff.js') }}"></script>
-    {{-- <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_API') }}&libraries=places&callback=initMap"
-        async defer></script> --}}
-        <script async src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_API') }}&callback=initMap&libraries=places">
-        </script>
-        
-        {{-- <script async src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_API') }}&callback=initMap&libraries=maps,marker&v=beta">
-    </script> --}}
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrnKqlsmJIGChHjoharwRwDHX5U0p2SJ8&loading=async&libraries=places&callback=initMap">
+    </script>
     <script>
         let map, marker, autocomplete;
 

@@ -280,8 +280,8 @@
     {{-- <script
         src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_API') }}&libraries=places&callback=initAutocomplete">
     </script> --}}
-    {{-- <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_API') }}&libraries=places&callback=initAutocomplete" async
-        defer></script> --}}
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrnKqlsmJIGChHjoharwRwDHX5U0p2SJ8&libraries=places&callback=initAutocomplete" async
+        defer></script>
 
     @yield('scripts')
     <script>
@@ -292,7 +292,7 @@
 
                 // Use the Google Maps Geocoding API to reverse-geocode the coordinates
                 var geocodeUrl =
-                    `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key={{ env('GOOGLE_MAP_API') }}`;
+                    `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyDrnKqlsmJIGChHjoharwRwDHX5U0p2SJ8`;
 
                 axios.get(geocodeUrl)
                     .then(response => {
