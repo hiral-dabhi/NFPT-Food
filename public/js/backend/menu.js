@@ -17,12 +17,16 @@ var menu = function () {
                 type: 'POST',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    businessId: businessId
                 }
             },
             columns: [
-                { data: 'id' , class: "p-4 pr-8 border border-t-0  border-gray-50 dark:border-zinc-600" },
+                { data: 'id', class: "p-4 pr-8 border border-t-0  border-gray-50 dark:border-zinc-600" },
                 { data: 'category_name', class: "p-4 pr-8 border border-t-0 border-l-0 border-gray-50 dark:border-zinc-600" },
                 { data: 'sub_category', class: "p-4 pr-8 border border-t-0 border-l-0 border-gray-50 dark:border-zinc-600" },
+                { data: 'title', class: "p-4 pr-8 border border-t-0 border-l-0 border-gray-50 dark:border-zinc-600" },
                 { data: 'price', class: "p-4 pr-8 border border-t-0 border-l-0 border-gray-50 dark:border-zinc-600" },
                 { data: 'status', class: "p-4 pr-8 border border-t-0 border-l-0 border-gray-50 dark:border-zinc-600" },
                 { data: 'actions', class: "p-4 pr-8 border border-t-0 border-l-0 rtl:border-l border-gray-50 dark:border-zinc-600" }
@@ -57,7 +61,7 @@ var menu = function () {
             width: "100%",
             minimumResultsForSearch: 1,
         });
-        $(document).on('change','#category_id',function(){
+        $(document).on('change', '#category_id', function () {
             $.ajax({
                 url: getSubCategory,
                 type: "POST",
@@ -77,7 +81,7 @@ var menu = function () {
                     selectElement.append(
                         '<option value="">Select Sub Category</option>'
                     );
-                    
+
                     $.each(response, function (index, value) {
                         var option = $("<option>", {
                             value: index,
@@ -89,10 +93,10 @@ var menu = function () {
                         selectElement.append(option);
                     });
                 },
-                error: function (error) {},
-            });       
+                error: function (error) { },
+            });
         });
-        $.validator.addMethod('acceptImage', function(value, element, param) {
+        $.validator.addMethod('acceptImage', function (value, element, param) {
             if (element.files.length === 0) return false; // No file selected
             const file = element.files[0];
             const validTypes = ['image/jpeg', 'image/png'];
@@ -101,8 +105,8 @@ var menu = function () {
         $('.menu-create-form').validate({
             rules: {
                 title: {
-                    required:false
-                },               
+                    required: false
+                },
                 category_id: {
                     required: true
                 },
@@ -111,25 +115,25 @@ var menu = function () {
                 },
                 image: {
                     required: true,
-                    acceptImage:true
+                    acceptImage: true
                 },
                 price: {
-                    number:true,
+                    number: true,
                     required: true
                 },
                 status: "required",
                 in_stock: "required",
             },
             messages: {
-                title: "Please enter title",    
-                image:{
-                    required:"Select Image",
+                title: "Please enter title",
+                image: {
+                    required: "Select Image",
                     image: {
                         acceptImage: 'Only JPG, JPEG, and PNG formats are supported.'
                     }
-                },        
+                },
                 price: {
-                    number:"Please enter price",
+                    number: "Please enter price",
                     required: "Please enter price"
                 },
                 category_id: {
@@ -149,7 +153,7 @@ var menu = function () {
         getSubCategory(categoryId);
         function getSubCategory(id) {
             console.log('hereeeeee');
-            
+
             $.ajax({
                 url: getSubCategoryUrl,
                 type: "POST",
@@ -169,7 +173,7 @@ var menu = function () {
                     selectElement.append(
                         '<option value="">Select Dish</option>'
                     );
-                    
+
                     $.each(response, function (index, value) {
                         // console.log(index);                        
                         var option = $("<option>", {
@@ -182,8 +186,8 @@ var menu = function () {
                         selectElement.append(option);
                     });
                 },
-                error: function (error) {},
-            });  
+                error: function (error) { },
+            });
         }
         $(document).on("change", "#category_id", function () {
             getSubCategory($(this).val());
@@ -199,7 +203,7 @@ var menu = function () {
             width: "100%",
             minimumResultsForSearch: 1,
         });
-        $.validator.addMethod('acceptImage', function(value, element, param) {
+        $.validator.addMethod('acceptImage', function (value, element, param) {
             if (element.files.length === 0) return false; // No file selected
             const file = element.files[0];
             const validTypes = ['image/jpeg', 'image/png'];
@@ -214,7 +218,7 @@ var menu = function () {
                 },
                 image: {
                     required: true,
-                    acceptImage:true
+                    acceptImage: true
                 },
                 sub_category_id: {
                     required: true
@@ -229,12 +233,12 @@ var menu = function () {
                 category_id: {
                     required: "Please select Country"
                 },
-                image:{
-                    required:"Select Image",
+                image: {
+                    required: "Select Image",
                     image: {
                         acceptImage: 'Only JPG, JPEG, and PNG formats are supported.'
                     }
-                },  
+                },
                 price: "Please enter price",
                 status: "Select Status"
 

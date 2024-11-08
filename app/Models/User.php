@@ -57,6 +57,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class, 'model_has_roles', 'model_id', 'role_id');
     }
 
+    public function userRoleDetail()
+{
+    return $this->belongsTo(Role::class, 'role_id'); // Adjust 'role_id' if necessary
+}
+
     public function restaurantDetail()
     {
         return $this->belongsTo(RestaurantMaster::class, 'id','user_id');

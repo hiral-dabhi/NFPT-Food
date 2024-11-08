@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('payment_status');
             $table->text('extra_instructions')->nullable();
             $table->string('order_status');
+            $table->dateTime('delivered_at');
 
             $table->timestamps();
 

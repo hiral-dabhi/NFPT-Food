@@ -135,10 +135,10 @@
                                     </div>
                                     <div class="p-2 userStatusContent">
                                         <p class="inline-block mr-6">Total Credit :
-                                            <span>₹{{ $total }}</span>
+                                            <span>{{getCurrency()}}{{ $total }}</span>
                                         </p>
                                         <p class="inline-block float-right">Total Debit :
-                                            <span>₹0</span>
+                                            <span>{{getCurrency()}}0</span>
                                         </p>
                                     </div>
                                 </div>

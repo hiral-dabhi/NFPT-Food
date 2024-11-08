@@ -91,7 +91,7 @@ class RestaurantStaffController extends Controller
     }
     public function businessDetail(){
         $user = User::where('id',auth()->user()->id)->first();
-        $restaurant = $user->staffRestaurant->restaurantDetail ?? null;
+        $restaurant = $user->hasRole('BusinessOwner') ? $user->restaurantDetail :  $user->staffRestaurant->restaurantDetail ?? null;
         return view('backend.restaurantStaff.business-detail', compact('restaurant'));
     }
     public function updateRestaurantDetail(Request $request,RestaurantMaster $restaurant)
@@ -124,7 +124,7 @@ class RestaurantStaffController extends Controller
 
     public function businessDetailMap(){
         $user = User::where('id',auth()->user()->id)->first();
-        $restaurant = $user->staffRestaurant->restaurantDetail ?? null;
+        $restaurant = $user->hasRole('BusinessOwner') ? $user->restaurantDetail :  $user->staffRestaurant->restaurantDetail ?? null;
         $countryList = $this->generalService->getCountryList();
 
         return view('backend.restaurantStaff.business-map', compact('restaurant','countryList'));

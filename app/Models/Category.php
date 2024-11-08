@@ -23,4 +23,8 @@ class Category extends Model
     {
         return $this->belongsTo(Country::class,'country_id');
     }
+    public function items()
+    {
+        return $this->hasMany(Menu::class,'category_id');
+    }
 }

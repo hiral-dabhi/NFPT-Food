@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    {{ __('Add Business') }}
+    {{ __('Add Location/Business Mgr.') }}
 @endsection
 @section('css')
     <!-- alertifyjs Css -->
@@ -13,7 +13,7 @@
     <div class="main-content group-data-[sidebar-size=sm]:ml-[70px]">
         <div class="page-content dark:bg-zinc-700">
             <div class="container-fluid px-[0.625rem]">
-                <x-page-title title="Add Sub Business" pagetitle="Business" />
+                <x-page-title title="Add Location/Business Mgr." pagetitle="Location/Business Mgr." />
 
                 <div class="grid grid-cols-1 mt-3">
                     <div class="card dark:bg-zinc-800 dark:border-zinc-600">

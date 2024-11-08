@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    {{ __('Sub Business') }}
+    {{ __('Location/Business Mgr.') }}
 @endsection
 @section('css')
     <!-- DataTables -->
@@ -48,7 +48,7 @@
             <div class="container-fluid px-[0.625rem]">
 
                 <!-- page title -->
-                <x-page-title title="Sub Business" pagetitle="Sub Business list" route="subRestaurant.create" />
+                <x-page-title title="Location/Business Mgr." pagetitle="Location/Business Mgr. list" route="subRestaurant.create" />
 
                 <div class="grid grid-cols-12 gap-6">
                     <div class="col-span-12">

@@ -19,7 +19,7 @@ class CurrencySeeder extends Seeder
         $currencies = [
             ['code' => 'AFN', 'name' => 'Afghani', 'symbol' => '؋'],
             ['code' => 'ALL', 'name' => 'Lek', 'symbol' => 'Lek'],
-            ['code' => 'INR', 'name' => 'India Rupee-INR', 'symbol' => '₹'],
+            ['code' => 'INR', 'name' => 'India Rupee-INR', 'symbol' => '{{getCurrency()}}'],
             ['code' => 'ANG', 'name' => 'Netherlands Antillian Guilder', 'symbol' => 'ƒ'],
             ['code' => 'ARS', 'name' => 'Argentine Peso', 'symbol' => '$'],
             ['code' => 'AUD', 'name' => 'Australian Dollar', 'symbol' => '$'],

@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\SubCategory;
 use App\Models\Menu;
+use App\Models\RestaurantMaster;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 
@@ -11,7 +12,12 @@ class MenuService
 {
     public function  fetch($requestData, $columns)
     {
-        $query = Menu::with('subCategoryDetail')->where('restaurant_id', auth()->user()->staffRestaurant->restaurantDetail->id)->select($columns);
+        $restaurant = auth()->user()->hasRole('BusinessOwner') ? auth()->user()->restaurantDetail :  auth()->user()->staffRestaurant->restaurantDetail ?? null;
+        $businessId = $restaurant->id ?? null;
+        if (isset($requestData['businessId'])) {
+            $businessId = $requestData['businessId'];
+        }
+        $query = Menu::with('subCategoryDetail')->where('restaurant_id', $businessId)->select($columns);
         if (! empty($requestData['search']['value'])) {
             $searchValue = $requestData['search']['value'];
             $query->filter(function ($user) use ($searchValue) {
@@ -41,8 +47,18 @@ class MenuService
     }
     public function store($requestData, $fileName)
     {
+        if(!empty($requestData['business_id'])){
+            $business = RestaurantMaster::find($requestData['business_id']);
+            if(empty($business)){
+                return redirect()->back();
+            }
+            $restaurantId = $requestData['business_id'];
+        }else{
+            $restaurant = auth()->user()->hasRole('BusinessOwner') ? auth()->user()->restaurantDetail :  auth()->user()->staffRestaurant->restaurantDetail ?? null;
+            $restaurantId = $restaurant->id;
+        }
         $menuArr = [
-            'restaurant_id' => auth()->user()->staffRestaurant->restaurantDetail->id ?? '',
+            'restaurant_id' => $restaurantId ?? '',
             'category_id' => $requestData['category_id'],
             'sub_category_id' => $requestData['sub_category_id'],
             'title' => Crypt::encryptString($requestData['title']),

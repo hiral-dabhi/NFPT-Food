@@ -198,7 +198,7 @@
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
                                         </div>
-                                        <div class="mb-4">
+                                        {{-- <div class="mb-4">
                                             <label for="zip_code"
                                                 class="block mb-2 font-medium text-gray-700 dark:text-gray-100">Zip Code<span
                                                     class="text-sm text-red-600">*</span></label>
@@ -209,7 +209,7 @@
                                             @error('zip_code')
                                                 <p class="text-sm text-red-600">{{ $message }}</p>
                                             @enderror
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                                 <div class="mt-3 col-span-6 sm:col-span-4 flex items-center justify-center">

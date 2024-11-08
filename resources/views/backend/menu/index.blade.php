@@ -70,6 +70,9 @@
                                                 Dish</th>
                                             <th
                                                 class="p-4 pr-8 border rtl:border-l-0 border-t-2 border-gray-50 dark:border-zinc-600">
+                                                Title</th>
+                                            <th
+                                                class="p-4 pr-8 border rtl:border-l-0 border-t-2 border-gray-50 dark:border-zinc-600">
                                                 Price</th>
                                             <th
                                                 class="p-4 pr-8 border rtl:border-l-0 border-t-2 border-gray-50 dark:border-zinc-600">
@@ -115,6 +118,7 @@
 
     <script>
         var getlist = "{{ route('menu.fetch') }}";
+        var businessId = null;
     </script>
     <script src="{{ asset('js/backend/menu.js') }}"></script>
     <script>

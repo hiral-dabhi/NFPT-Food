@@ -20,7 +20,7 @@ class RoleUpdateRequest extends FormRequest
     {
         $role = $this->route('role');
         return [
-            'name' => 'required|unique:roles,name,' . $role->id,
+            'name' => 'nullable|unique:roles,name,' . $role->id,
         ];
     }
 }

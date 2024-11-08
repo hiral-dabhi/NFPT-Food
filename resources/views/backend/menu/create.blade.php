@@ -26,6 +26,7 @@
                             <form method="POST" action="{{ route('menu.store') }}" class="menu-create-form"
                                 enctype="multipart/form-data">
                                 @csrf
+                                <input type="hidden" name="business_id" value="{{ $businessId ?? null }}">
                                 <div class="grid grid-cols-12 gap-x-6">
                                     <div class="col-span-12 lg:col-span-6">
                                         <div class="mb-4">
@@ -72,7 +73,7 @@
                                         <div class="mb-4">
                                             <label for="price"
                                                 class="block mb-2 font-medium text-gray-700 dark:text-gray-100">Price<span
-                                                class="text-sm text-red-600">*</span></label>
+                                                    class="text-sm text-red-600">*</span></label>
                                             <input type="number" name="price" id="price" placeholder="Enter price"
                                                 class="w-full placeholder:text-13 text-13 py-1.5 rounded border-gray-100 focus:border focus:border-violet-50 focus:ring focus:ring-violet-500/20  dark:bg-zinc-700/50 dark:border-zinc-600 dark:placeholder:text-zinc-300 placeholder:text-gray-400 dark:text-zinc-100""
                                                 value="{{ old('price') }}">
@@ -84,8 +85,8 @@
                                             <label for="image"
                                                 class="block mb-2 font-medium text-gray-700 dark:text-gray-100">Image</label>
                                             <div class="flex items-center">
-                                                <input type="file" name="image" id="image" class="mr-4" accept=".jpg, .jpeg, .png"
-                                                    onchange="previewImage(event)">
+                                                <input type="file" name="image" id="image" class="mr-4"
+                                                    accept=".jpg, .jpeg, .png" onchange="previewImage(event)">
                                                 <div id="imagePreview">
 
                                                 </div>
@@ -138,13 +139,12 @@
                                         </div>
                                         <div class="mb-4">
                                             <label for="in_stock"
-                                                class="block mb-2 font-medium text-gray-700 dark:text-gray-100">In Stock<span
-                                                    class="text-sm text-red-600">*</span></label>
+                                                class="block mb-2 font-medium text-gray-700 dark:text-gray-100">In
+                                                Stock<span class="text-sm text-red-600">*</span></label>
                                             <div class="mt-1 flex items-center">
                                                 <div class="flex items-center" style="margin-right: 10px">
                                                     <input type="radio" id="in_stock1" name="in_stock" value="0"
-                                                    {{ old('in_stock') === '0' ? 'checked' : '' }}
-
+                                                        {{ old('in_stock') === '0' ? 'checked' : '' }}
                                                         class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
                                                     <label for="in_stock1"
                                                         class="ml-2 block text-sm leading-5 text-gray-700">Yes</label>

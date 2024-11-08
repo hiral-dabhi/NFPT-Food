@@ -27,7 +27,7 @@ class RestaurantOwnerUpdateRequest extends FormRequest
             'city' => 'required',
             'state' => 'required',
             'country' => 'required',
-            'zip_code' => 'required',
+            // 'zip_code' => 'required',
             'status' => 'required',
         ];
     }

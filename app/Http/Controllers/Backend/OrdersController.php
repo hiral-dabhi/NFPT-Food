@@ -107,6 +107,10 @@ class OrdersController extends Controller
             'status' => 'required'
         ]);
         $orders->order_status = $request->status;
+        if($request->status == '5'){
+            $orders->delivered_at = now();
+
+        }
         $orders->save();
 
         return redirect()->back()->with('success', 'Order status updated successfully!');

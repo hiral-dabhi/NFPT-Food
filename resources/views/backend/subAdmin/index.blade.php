@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    {{ __('Sub Admin') }}
+    {{ __('NFPT Business Approval Team') }}
 @endsection
 @section('css')
     <!-- DataTables -->
@@ -48,7 +48,7 @@
             <div class="container-fluid px-[0.625rem]">
 
                 <!-- page title -->
-                <x-page-title title="Sub Admin" pagetitle="Sub Admin" route="subAdmin.create" />
+                <x-page-title title="NFPT Business Approval Team" pagetitle="NFPT Business Approval Team" route="subAdmin.create" />
 
                 <div class="grid grid-cols-12 gap-6">
                     <div class="col-span-12">

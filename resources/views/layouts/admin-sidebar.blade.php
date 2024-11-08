@@ -20,7 +20,7 @@
                         <a href="{{ route('subAdmin.index') }}"
                             class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
                             <i data-feather="home" fill="#545a6d33"></i>
-                            <span data-key="t-dashboard">Sub Admin</span>
+                            <span data-key="t-dashboard">NFPT Business Approval Team</span>
                         </a>
                     </li>
                 @endif
@@ -74,7 +74,7 @@
                         <a href="javascript: void(0);" aria-expanded="false"
                             class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear nav-menu hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
                             <i data-feather="settings" fill="#545a6d33"></i>
-                            <span data-key="t-extend">Site Config</span>
+                            <span data-key="t-extend">Growth Areas</span>
                         </a>
                         <ul>
                             <li>
@@ -100,14 +100,14 @@
                             <li>
                                 <a href="{{ route('category.index') }}"
                                     class="block py-[6.4px] pr-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear pl-[52.8px] hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white"><i
-                                        data-feather="play" fill="#545a6d33"></i>Category</a>
+                                        data-feather="play" fill="#545a6d33"></i>General Category</a>
                             </li>
                             <li>
                                 <a href="{{ route('subCategory.index') }}"
                                     class="block py-[6.4px] pr-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear pl-[52.8px] hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white"><i
-                                        data-feather="play" fill="#545a6d33"></i>Sub Category</a>
+                                        data-feather="play" fill="#545a6d33"></i>More Specific Item</a>
                             </li>
-    
+
                         </ul>
                     </li>
                     <li>
@@ -145,6 +145,20 @@
 
 
                 @if ($getCurrentUserRoleName == 'BusinessOwner')
+                    <li>
+                        <a href="{{ route('menu.index') }}"
+                            class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
+                            <i data-feather="home" fill="#545a6d33"></i>
+                            <span data-key="t-dashboard"> Menu</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('restaurantStaff.businessDetail') }}"
+                            class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
+                            <i data-feather="home" fill="#545a6d33"></i>
+                            <span data-key="t-dashboard"> Business Setting</span>
+                        </a>
+                    </li>
                     @can('professional-profile')
                         <li>
                             <a href="{{ route('professionalProfile.profile') }}"

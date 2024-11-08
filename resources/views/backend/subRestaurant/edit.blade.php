@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    {{ __('Edit Sub Business') }}
+    {{ __('Edit Location/Business Mgr.') }}
 @endsection
 @section('css')
     <!-- alertifyjs Css -->
@@ -15,7 +15,7 @@
             <div class="container-fluid px-[0.625rem]">
 
                 <!-- page title -->
-                <x-page-title title="Edit Sub Business" pagetitle="Sub Business" />
+                <x-page-title title="Edit Location/Business Mgr." pagetitle="Location/Business Mgr." />
 
                 <div class="grid grid-cols-1 mt-3">
                     <div class="flex flex-wrap card-body">
@@ -29,6 +29,10 @@
                                 <li>
                                     <a href="{{ route('subRestaurant.businessAddress',$restaurant->id) }}"
                                         class="inline-block p-4">Address Detail</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('subRestaurant.menu.list',$restaurant->id) }}"
+                                        class="inline-block p-4">Menu</a>
                                 </li>
                                 {{-- <li>
                                     <a href="{{ route('user.settings', $user->id) }}" class="inline-block p-4">Settings</a>
@@ -239,10 +243,10 @@
     <script type="text/javascript" src="{{ asset('js/libs/jquery-3.7.1.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/libs/jquery.validate.min.js') }}"></script>
     <script src="{{ URL::asset('build/libs/alertifyjs/build/alertify.min.js') }}"></script>
-    <script src="{{ asset('js/backend/employee.js') }}"></script>
+    <script src="{{ asset('js/backend/restaurant.js') }}"></script>
     <script>
         $(function() {
-            employee.edit();
+            restaurant.edit();
         });
     </script>
 @endsection

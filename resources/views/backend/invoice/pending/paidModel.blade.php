@@ -34,7 +34,7 @@
                                         <div class="col-span-8 lg:col-span-1">
                                             <div class="mt-2">
                                                 <label
-                                                    class="grand_total_amount block mb-2 font-medium text-gray-700 dark:text-gray-100">₹
+                                                    class="grand_total_amount block mb-2 font-medium text-gray-700 dark:text-gray-100">{{getCurrency()}}
                                                     {{ $invoice->grand_total ?? '0' }}</label>
                                             </div>
                                         </div>
@@ -51,7 +51,7 @@
                                         <div class="col-span-8 lg:col-span-1">
                                             <div class="mt-2">
                                                 <label
-                                                    class="paid_amount block mb-2 font-medium text-gray-700 dark:text-gray-100">₹
+                                                    class="paid_amount block mb-2 font-medium text-gray-700 dark:text-gray-100">{{getCurrency()}}
                                                     {{ $invoice->paid_amount ?? '0' }}</label>
                                             </div>
                                         </div>
@@ -68,7 +68,7 @@
                                         <div class="col-span-8 lg:col-span-1">
                                             <div class="mt-2">
                                                 <label
-                                                    class="receivable_amount block mb-2 font-medium text-gray-700 dark:text-gray-100">₹
+                                                    class="receivable_amount block mb-2 font-medium text-gray-700 dark:text-gray-100">{{getCurrency()}}
                                                     {{ $invoice->unpaid_amount ?? '0' }}</label>
                                             </div>
                                         </div>
@@ -92,7 +92,7 @@
                                         <div class="col-span-2 lg:col-span-1 flex items-center">
                                             <div class="mt-3">
                                                 <label for="rupee"
-                                                    class="block mb-2 font-medium text-gray-700 dark:text-gray-100">₹</label>
+                                                    class="block mb-2 font-medium text-gray-700 dark:text-gray-100">{{getCurrency()}}</label>
                                             </div>
                                         </div>
                                     </div>

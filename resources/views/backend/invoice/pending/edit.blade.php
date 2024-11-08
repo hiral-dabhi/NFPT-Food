@@ -106,7 +106,7 @@
                                                     Price</b></label>
                                             <div class="col-span-4">
                                                 <label
-                                                    class="unit_price block mb-2 font-medium text-gray-700 dark:text-gray-100">₹
+                                                    class="unit_price block mb-2 font-medium text-gray-700 dark:text-gray-100">{{getCurrency()}}
                                                     {{ $invoice->unit_price ?? '--' }}</label>
                                             </div>
                                         </div>
@@ -124,7 +124,7 @@
                                                     Total</b></label>
                                             <div class="col-span-4">
                                                 <label
-                                                    class="sub_total block mb-2 font-medium text-gray-700 dark:text-gray-100">₹
+                                                    class="sub_total block mb-2 font-medium text-gray-700 dark:text-gray-100">{{getCurrency()}}
                                                     {{ $invoice->sub_total ?? '--' }}</label>
                                             </div>
                                         </div>
@@ -167,7 +167,7 @@
                                                         </div>
                                                         <div class="col-span-2 lg:col-span-2 flex items-center">
                                                             <label for="ruppes"
-                                                                class="block mb-3 font-medium text-gray-700 dark:text-gray-100">₹</label>
+                                                                class="block mb-3 font-medium text-gray-700 dark:text-gray-100">{{getCurrency()}}</label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -190,7 +190,7 @@
                                                         </div>
                                                         <div class="col-span-2 lg:col-span-2 flex items-center">
                                                             <label for="ruppes"
-                                                                class="block mb-3 font-medium text-gray-700 dark:text-gray-100">₹</label>
+                                                                class="block mb-3 font-medium text-gray-700 dark:text-gray-100">{{getCurrency()}}</label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -224,7 +224,7 @@
                                                         </div>
                                                         <div class="col-span-2 lg:col-span-2 flex items-center">
                                                             <label for="ruppes"
-                                                                class="block mb-3 font-medium text-gray-700 dark:text-gray-100">₹</label>
+                                                                class="block mb-3 font-medium text-gray-700 dark:text-gray-100">{{getCurrency()}}</label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -258,7 +258,7 @@
                                                         </div>
                                                         <div class="col-span-2 lg:col-span-2 flex items-center">
                                                             <label for="rupees"
-                                                                class="block mb-3 font-medium text-gray-700 dark:text-gray-100">₹</label>
+                                                                class="block mb-3 font-medium text-gray-700 dark:text-gray-100">{{getCurrency()}}</label>
                                                         </div>
                                                     </div>
                                                 </div>

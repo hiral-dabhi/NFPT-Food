@@ -22,31 +22,21 @@
                         <a href="javascript: void(0);" aria-expanded="false"
                             class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear nav-menu hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
                             <i data-feather="grid" class="align-middle" fill="#545a6d33"></i>
-                            <span data-key="t-apps"> Site Config</span>
+                            <span data-key="t-apps"> Menus</span>
                         </a>
                         <ul>
-                            <a href="{{ route('country.index') }}"
-                                class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
-                                <i data-feather="home" fill="#545a6d33"></i>
-                                <span data-key="t-dashboard">Country</span>
-                            </a>
-                            <a href="{{ route('currency.index') }}"
-                                class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
-                                <i data-feather="home" fill="#545a6d33"></i>
-                                <span data-key="t-dashboard">Currency</span>
-                            </a>
                             <li>
                                 <a href="{{ route('category.index') }}"
                                     class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
                                     <i data-feather="home" fill="#545a6d33"></i>
-                                    <span data-key="t-dashboard">Category</span>
+                                    <span data-key="t-dashboard">General Category</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('subCategory.index') }}"
                                     class="block py-2.5 px-6 text-sm font-medium text-gray-950 transition-all duration-150 ease-linear hover:text-violet-500 dark:text-gray-300 dark:active:text-white dark:hover:text-white">
                                     <i data-feather="home" fill="#545a6d33"></i>
-                                    <span data-key="t-dashboard">Dishes</span>
+                                    <span data-key="t-dashboard">More Specific Item</span>
                                 </a>
                             </li>
                             

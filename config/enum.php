@@ -17,6 +17,6 @@ return [
         '4'=>'Out for delivery',
         '5'=>'Delivered',
         '6'=>'Refund',
-        '5'=>'Scheduled',
+        '7'=>'Scheduled',
     ]
 ];

@@ -107,7 +107,7 @@
                                     </div>
                                     <div class="p-2 userStatusContent">
                                         <p class="inline-block mr-6">Total Collection(s) :
-                                            <span>₹{{ $total }}</span>
+                                            <span>{{getCurrency()}}{{ $total }}</span>
                                         </p>
                                     </div>
                                 </div>

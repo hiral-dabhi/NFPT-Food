@@ -22,9 +22,120 @@
             <div class="container-fluid px-[0.625rem]">
                 <!-- page title -->
                 <x-page-title title="Dashboard" pagetitle="Home" />
-               
+
                 @include('components.alert-message')
-              
+                @if (auth()->user()->hasRole('SuperAdmin'))
+                    <div class="col-span-12 md:col-span-5 lg:col-span-4 xl:col-span-3 relative gap-6 mt-3">
+                        <div class="grid grid-cols-1 lg:gap-x-6 lg:grid-cols-12">
+                            <div class="col-span-12 xl:col-span-3">
+                                <div class="p-5 bg-green-600 border-green-600 rounded card">
+                                    <div class="grid grid-cols-12 gap-6">
+                                        <div class="col-span-6 lg:col-span-6">
+                                            <i class="fas fa-ticket-alt mr-3 text-white fa-3x"
+                                                style="transform: rotate(-45deg);"></i>
+                                        </div>
+                                        <div class="col-span-6 lg:col-span-6 float-right">
+                                            <div class="text-white flex justify-end">
+                                                <span><b>Businesses</b></span>
+                                            </div>
+                                            <div class="text-white flex justify-end mt-2">
+                                                <span>
+                                                    <h4>{{ $restaurantCount }}</h4>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        {{-- <div class="col-span-12">
+                                        <hr>
+                                    </div> --}}
+                                        {{-- <div class="col-span-12">
+                                        <i class="fas fa-ticket-alt mr-3 text-white" style="transform: rotate(-45deg);"></i>
+                                        <span class="text-white"><b>Today's Total Tickets</b></span>
+                                    </div> --}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-span-12 xl:col-span-3">
+                                <div class="p-5 rounded card bg-sky-400 border-sky-400">
+                                    <div class="grid grid-cols-12 gap-6">
+                                        <div class="col-span-6 lg:col-span-6">
+                                            <i class="fas fa-ticket-alt mr-3 text-white fa-3x"
+                                                style="transform: rotate(-45deg);"></i>
+                                        </div>
+                                        <div class="col-span-6 lg:col-span-6 float-right">
+                                            <div class="text-white flex justify-end">
+                                                <span><b>Drivers</b></span>
+                                            </div>
+                                            <div class="text-white flex justify-end mt-2">
+                                                <span>
+                                                    <h4>{{ $driverCount }}</h4>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        {{-- <div class="col-span-12">
+                                        <hr>
+                                    </div> --}}
+                                        {{-- <div class="col-span-12">
+                                        <i class="fas fa-ticket-alt mr-3 text-white" style="transform: rotate(-45deg);"></i>
+                                        <span class="text-white"><b>Today's Resolved Tickets</b></span>
+                                    </div> --}}
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- <div class="col-span-12 xl:col-span-3">
+                            <div class="p-5 rounded card bg-yellow-700 border-yellow-700">
+                                <div class="grid grid-cols-12 gap-6">
+                                    <div class="col-span-6 lg:col-span-6">
+                                        <i class="fas fa-ticket-alt mr-3 text-white fa-3x" style="transform: rotate(-45deg);"></i>
+                                    </div>
+                                    <div class="col-span-6 lg:col-span-6 float-right">
+                                        <div class="text-white flex justify-end">
+                                            <span><b>Total In Progress</b></span>
+                                        </div>
+                                        <div class="text-white flex justify-end mt-2">
+                                            <span>
+                                                <h4>{{$totalInProcessTicket}}</h4>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-span-12">
+                                        <hr>
+                                    </div>
+                                    <div class="col-span-12">
+                                        <i class="fas fa-ticket-alt mr-3 text-white" style="transform: rotate(-45deg);"></i>
+                                        <span class="text-white"><b>Total In Progress Tickets</b></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-12 xl:col-span-3">
+                            <div class="p-5 rounded card bg-red-700 border-red-700">
+                                <div class="grid grid-cols-12 gap-6">
+                                    <div class="col-span-6 lg:col-span-6">
+                                        <i class="fas fa-ticket-alt mr-3 text-white fa-3x" style="transform: rotate(-45deg);"></i>
+                                    </div>
+                                    <div class="col-span-6 lg:col-span-6 float-right">
+                                        <div class="text-white flex justify-end">
+                                            <span><b>Assign To Me</b></span>
+                                        </div>
+                                        <div class="text-white flex justify-end mt-2">
+                                            <span>
+                                                <h4>{{$assignedToMeTickets}}</h4>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-span-12">
+                                        <hr>
+                                    </div>
+                                    <div class="col-span-12">
+                                        <i class="fas fa-ticket-alt mr-3 text-white" style="transform: rotate(-45deg);"></i>
+                                        <span class="text-white"><b>Total Assign To Me</b></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> --}}
+                        </div>
+                    </div>
+                @endif
                 <!-- footer -->
                 @include('layouts.footer')
             </div>
@@ -32,7 +143,6 @@
     </div>
 @endsection
 @section('scripts')
-  
     <script type="text/javascript" src="{{ asset('js/libs/select2.full.min.js') }}"></script>
     {{-- <script src="{{ URL::asset('build/libs/apexcharts/apexcharts.min.js') }}"></script> --}}
     <script src="{{ URL::asset('build/libs/swiper/swiper-bundle.min.js') }}"></script>

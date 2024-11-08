@@ -204,7 +204,7 @@ var restaurant = function () {
                 { data: 'city', class: "p-4 pr-8 border border-t-0 border-l-0 border-gray-50 dark:border-zinc-600" },
                 { data: 'state', class: "p-4 pr-8 border border-t-0 border-l-0 border-gray-50 dark:border-zinc-600" },
                 { data: 'country', class: "p-4 pr-8 border border-t-0 border-l-0 border-gray-50 dark:border-zinc-600" },
-                { data: 'zip_code', class: "p-4 pr-8 border border-t-0 border-l-0 border-gray-50 dark:border-zinc-600" },
+                // { data: 'zip_code', class: "p-4 pr-8 border border-t-0 border-l-0 border-gray-50 dark:border-zinc-600" },
                 { data: 'actions', class: "p-4 pr-8 border border-t-0 border-l-0 rtl:border-l border-gray-50 dark:border-zinc-600" }
             ],
             dom: '<"top"lfB>rt<"bottom"ip><"clear">',
@@ -272,12 +272,12 @@ var restaurant = function () {
                 country: {
                     required: true,
                 },
-                zip_code: {
-                    required: true,
-                    number: true,
-                    minlength: 5,
-                    maxlength: 10,
-                },
+                // zip_code: {
+                //     required: true,
+                //     number: true,
+                //     minlength: 5,
+                //     maxlength: 10,
+                // },
                 status: {
                     required: true,
                 },
@@ -317,12 +317,12 @@ var restaurant = function () {
                 city: "Please enter city",
                 state: "Please enter state",
                 country: "Please select a country",
-                zip_code: {
-                    required: "Please enter a zip code",
-                    number: "Please enter a valid zip code",
-                    minlength: "Zip code must be at least 5 digits",
-                    maxlength: "Zip code cannot exceed 10 digits",
-                },
+                // zip_code: {
+                //     required: "Please enter a zip code",
+                //     number: "Please enter a valid zip code",
+                //     minlength: "Zip code must be at least 5 digits",
+                //     maxlength: "Zip code cannot exceed 10 digits",
+                // },
                 status: "Please select status",
                 password: "Please enter a password",
                 confirm_password: {
@@ -379,12 +379,12 @@ var restaurant = function () {
                 country: {
                     required: true,
                 },
-                zip_code: {
-                    required: true,
-                    number: true,
-                    minlength: 5,
-                    maxlength: 10,
-                },
+                // zip_code: {
+                //     required: true,
+                //     number: true,
+                //     minlength: 5,
+                //     maxlength: 10,
+                // },
                 status: {
                     required: true,
                 },
@@ -424,12 +424,12 @@ var restaurant = function () {
                 city: "Please enter city",
                 state: "Please enter state",
                 country: "Please select a country",
-                zip_code: {
-                    required: "Please enter a zip code",
-                    number: "Please enter a valid zip code",
-                    minlength: "Zip code must be at least 5 digits",
-                    maxlength: "Zip code cannot exceed 10 digits",
-                },
+                // zip_code: {
+                //     required: "Please enter a zip code",
+                //     number: "Please enter a valid zip code",
+                //     minlength: "Zip code must be at least 5 digits",
+                //     maxlength: "Zip code cannot exceed 10 digits",
+                // },
                 status: "Please select status",
                 password: "Please enter a password",
                 confirm_password: {

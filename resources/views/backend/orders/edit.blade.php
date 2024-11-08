@@ -80,11 +80,13 @@
                                             class="fa fa-check"></i>
                                         Scheduled</button>
                                 @endif
-                                <button type="button"
-                                    class="text-white btn bg-red-500 border-black-500 hover:bg-red-600 focus:ring ring-red-50 focus:bg-red-600 status-update-btn"
-                                    data-status="1" data-label="modal" data-tw-target="#re-solved-modal"><i
-                                        class="fa fa-cancel"></i>
-                                    Cancel Order</button>
+                                @if ($orders->order_status !== '5')
+                                    <button type="button"
+                                        class="text-white btn bg-red-500 border-black-500 hover:bg-red-600 focus:ring ring-red-50 focus:bg-red-600 status-update-btn"
+                                        data-status="1" data-label="modal" data-tw-target="#re-solved-modal"><i
+                                            class="fa fa-cancel"></i>
+                                        Cancel Order</button>                                    
+                                @endif
 
                                 <form id="orderStatusForm" method="POST"
                                     action="{{ route('orders.status.update', $orders->id) }}">
@@ -104,7 +106,7 @@
                                 <div class="col-span-12 xl:col-span-6">
                                     <div class="card dark:bg-zinc-800 dark:border-zinc-600">
                                         <div class="card-body border-b border-gray-100 dark:border-zinc-600">
-                                            <h6 class="mb-1 text-gray-700 text-15 dark:text-gray-100">Basic example</h6>
+                                            <h6 class="mb-1 text-gray-700 text-15 dark:text-gray-100">{{Crypt::decryptString($orders->businessDetail->name)}}</h6>
                                         </div>
                                         <div class="card-body">
                                             <div class="relative overflow-x-auto w-full">

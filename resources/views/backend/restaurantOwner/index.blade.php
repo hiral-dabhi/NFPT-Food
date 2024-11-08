@@ -75,8 +75,8 @@
                                                 State</th>
                                             <th class="p-4 pr-8 border rtl:border-l-0 border-t-2 border-gray-50 dark:border-zinc-600">
                                                 Country</th>
-                                            <th class="p-4 pr-8 border rtl:border-l-0 border-t-2 border-gray-50 dark:border-zinc-600">
-                                                Zip code</th>
+                                            {{-- <th class="p-4 pr-8 border rtl:border-l-0 border-t-2 border-gray-50 dark:border-zinc-600">
+                                                Zip code</th> --}}
                                             <th class="p-4 pr-8 border rtl:border-l-0 border-t-2 border-gray-50 dark:border-zinc-600">
                                                 Action</th>
                                         </tr>

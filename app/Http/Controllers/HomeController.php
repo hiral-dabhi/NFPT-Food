@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RestaurantMaster;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $restaurantCount = RestaurantMaster::count();
+        $driverCount = User::role('DeliveryDriver')->count();
+        return view('dashboard',compact('restaurantCount','driverCount'));
     }
 }

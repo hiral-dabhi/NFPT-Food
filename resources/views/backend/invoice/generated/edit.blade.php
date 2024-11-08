@@ -85,7 +85,7 @@
                                                     Price</b></label>
                                             <div class="col-span-4">
                                                 <label
-                                                    class="unit_price block mb-2 font-medium text-gray-700 dark:text-gray-100">₹
+                                                    class="unit_price block mb-2 font-medium text-gray-700 dark:text-gray-100">{{getCurrency()}}
                                                     {{ $invoice->unit_price ?? '--' }}</label>
                                             </div>
                                         </div>
@@ -103,7 +103,7 @@
                                                     Total</b></label>
                                             <div class="col-span-4">
                                                 <label
-                                                    class="sub_total block mb-2 font-medium text-gray-700 dark:text-gray-100">₹
+                                                    class="sub_total block mb-2 font-medium text-gray-700 dark:text-gray-100">{{getCurrency()}}
                                                     {{ $invoice->sub_total ?? '--' }}</label>
                                             </div>
                                         </div>
@@ -112,7 +112,7 @@
                                             <label for="other_charges"
                                                 class="col-span-2 font-medium text-gray-700 dark:text-gray-100"><b>Other
                                                     Charges</b></label>
-                                            <span class="col-span-4 font-medium text-gray-700 dark:text-gray-100">₹
+                                            <span class="col-span-4 font-medium text-gray-700 dark:text-gray-100">{{getCurrency()}}
                                                 {{ $invoice->other_charges ?? '--' }}</span>
                                         </div>
 
@@ -124,7 +124,7 @@
                                                     class="cgst_percentage block mb-2 font-medium text-gray-700 dark:text-gray-100">{{ $invoice->cgst_percentage ?? '--' }}
                                                     %</span>
                                                 <label
-                                                    class="cgst block mb-2 font-medium text-gray-700 dark:text-gray-100">₹
+                                                    class="cgst block mb-2 font-medium text-gray-700 dark:text-gray-100">{{getCurrency()}}
                                                     {{ $invoice->cgst ?? '--' }}</label>
                                             </div>
                                         </div>
@@ -136,7 +136,7 @@
                                                     class="ggst_percentage block mb-2 font-medium text-gray-700 dark:text-gray-100">{{ $invoice->ggst_percentage ?? '--' }}
                                                     %</span>
                                                 <label
-                                                    class="ggst block mb-2 font-medium text-gray-700 dark:text-gray-100">₹
+                                                    class="ggst block mb-2 font-medium text-gray-700 dark:text-gray-100">{{getCurrency()}}
                                                     {{ $invoice->ggst ?? '--' }}</label>
                                             </div>
                                         </div>
@@ -145,13 +145,13 @@
                                             <label for="other_charges"
                                                 class="col-span-2 font-medium text-gray-700 dark:text-gray-100"><b>Grand
                                                     Total</b></label>
-                                            <span class="col-span-4 font-medium text-gray-700 dark:text-gray-100">₹
+                                            <span class="col-span-4 font-medium text-gray-700 dark:text-gray-100">{{getCurrency()}}
                                                 {{ $invoice->grand_total ?? '--' }}</span>
                                         </div>
                                         <div class="mb-4 grid grid-cols-6">
                                             <label for="other_charges"
                                                 class="col-span-2 font-medium text-gray-700 dark:text-gray-100"><b>Paid</b></label>
-                                            <span class="col-span-4 font-medium text-gray-700 dark:text-gray-100">₹
+                                            <span class="col-span-4 font-medium text-gray-700 dark:text-gray-100">{{getCurrency()}}
                                                 {{ $invoice->paid_amount ?? '--' }}</span>
                                         </div>
                                     </div>

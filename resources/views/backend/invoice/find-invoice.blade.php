@@ -188,17 +188,17 @@
 
                                         <div class="col-span-12 lg:col-span-4">
                                             <p class="inline-block mr-6">Total :
-                                                <span>₹ {{ $invoiceTotalAmount->sum('grand_total') }}</span>
+                                                <span>{{getCurrency()}} {{ $invoiceTotalAmount->sum('grand_total') }}</span>
                                             </p>
                                         </div>
                                         <div class="col-span-12 lg:col-span-4">
                                             <p class="inline-block mr-6 float-center">Paid Amount :
-                                                <span>₹ {{ $invoiceTotalAmount->sum('paid_amount') }}</span>
+                                                <span>{{getCurrency()}} {{ $invoiceTotalAmount->sum('paid_amount') }}</span>
                                             </p>
                                         </div>
                                         <div class="col-span-12 lg:col-span-4">
                                             <p class="inline-block">Unpaid Amount :
-                                                <span class="text-red-600">₹ {{ $invoiceTotalAmount->sum('unpaid_amount') }}</span>
+                                                <span class="text-red-600">{{getCurrency()}} {{ $invoiceTotalAmount->sum('unpaid_amount') }}</span>
                                             </p>
                                         </div>
                                     </div>

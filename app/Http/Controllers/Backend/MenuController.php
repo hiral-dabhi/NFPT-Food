@@ -56,10 +56,11 @@ class MenuController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
+        $businessId = $request->restaurant ?? null;
         $categoryList = $this->generalService->getCategoryList();
-        return view('backend.menu.create',compact('categoryList'));
+        return view('backend.menu.create',compact('categoryList','businessId'));
     }
 
     public function store(Request $request)

@@ -34,7 +34,7 @@ class RestaurantOwnerRequest extends FormRequest
             'city' => 'required|string|max:255',
             'state' => 'required|string|max:255',
             'country' => 'required|string|max:255',
-            'zip_code' => 'required|numeric',
+            // 'zip_code' => 'required|numeric',
         ];
     }
 

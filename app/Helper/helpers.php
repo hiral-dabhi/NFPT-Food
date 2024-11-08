@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Currency;
 use App\Models\EmailNotificationSetting;
 use App\Services\GeneralService;
 use Illuminate\Support\Facades\Artisan;
@@ -113,4 +114,14 @@ if (!function_exists('getRoles')) {
     {
         return Role::whereNot('roles.name', 'Subscriber')->pluck('name')->toArray();
     }
+}
+function getCurrency(){
+    $authUser = Auth::guard('customer')->user() ?? Auth::guard('web')->user();
+    if(!empty($authUser)){
+        $currancy = Currency::where('country_id',$authUser->country)->first();
+        if(!empty($currancy)){
+            return $currancy->sign ?? '';
+        }
+    }
+    return env('CURRENCY');
 }

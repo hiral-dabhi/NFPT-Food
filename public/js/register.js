@@ -55,6 +55,13 @@ $(function () {
                     },
                 },
             },
+            state: {
+                required: {
+                    depends: function (element) {
+                        return $("#role_id").val() === "BusinessOwner";
+                    },
+                },
+            },
             zip_code: {
                 required: {
                     depends: function (element) {

@@ -188,5 +188,8 @@ class RestaurantController extends Controller
         $restaurant->longitude = $request->longitude;
         $restaurant->save();
         return redirect()->back()->with('success', 'Business details updated successfully.');
-    }    
+    }   
+    public function menuList(RestaurantMaster $restaurant){
+        return view('backend.subRestaurant.menu-list', compact('restaurant'));
+    } 
 }

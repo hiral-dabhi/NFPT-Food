@@ -151,7 +151,7 @@ class RestaurantService
             'city' => $requestData['city'],
             'state' => $requestData['state'],
             'country' => $requestData['country'],
-            'zipcode' => $requestData['zip_code'],
+            // 'zipcode' => $requestData['zip_code'],
             'contact_number' => $requestData['contact_number'],
             'password' => Hash::make($requestData['password']),
         ];
@@ -164,7 +164,7 @@ class RestaurantService
             'address' => $requestData['address'],
             'state' => $requestData['state'],
             'city' => $requestData['city'],
-            'zip_code' => $requestData['zip_code'],
+            // 'zip_code' => $requestData['zip_code'],
             'country' => $requestData['country'],
             'email' => $requestData['business_email'],
             'contact_number' => $requestData['business_contact'],
@@ -182,7 +182,7 @@ class RestaurantService
             'city' => $requestData['city'],
             'state' => $requestData['state'],
             'country' => $requestData['country'],
-            'zipcode' => $requestData['zip_code'],
+            // 'zipcode' => $requestData['zip_code'],
             'contact_number' => $requestData['contact_number'],
             'password' => Hash::make($requestData['password']),
         ];

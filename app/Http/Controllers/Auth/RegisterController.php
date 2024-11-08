@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\RestaurantMaster;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Role;
 
 class RegisterController extends Controller
 {
@@ -30,7 +32,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/dashboard';
+    protected $redirectTo = '/admin/dashboard';
 
     /**
      * Create a new controller instance.
@@ -54,6 +56,7 @@ class RegisterController extends Controller
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             'role_id' => ['required'],
+            // 'contact_number' => ['required',  'unique:users'], 
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
         ]);
@@ -67,7 +70,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        // dd($data);
         $user =  User::create([
             'firstname' => Crypt::encryptString($data['firstname']),
             'lastname' => Crypt::encryptString($data['lastname']),
@@ -75,13 +77,30 @@ class RegisterController extends Controller
             'contact_number' => $data['contact'],
             'password' => Hash::make($data['password']),
         ]);
+
         if ($user) {
-            $user->assignRole($data['role_id']);
+            $roleName = $data['role_id']; 
+            if ($roleName === 'Client/Customer') {
+                // Temporarily switch guard to 'customer'
+                $user->guard_name = 'customer';
+            } else {
+                // Use the default guard 'web' for other roles
+                $user->guard_name = 'web';
+            }
+    
+            // Assign the role to the user based on the guard
+            $role = Role::where('name', $roleName)->where('guard_name', $user->guard_name)->first();
+    
+            if ($role) {
+                // Assign the role with the correct guard
+                $user->assignRole($role);
+            }
             if ($data['role_id'] == 'BusinessOwner') {
                 $user->update([
                     'address' => $data['address'],
                     'city' => $data['city'],
                     'zip_code' => $data['zip_code'],
+                    'state' => $data['state'],
                     'country' => $data['country_id'],
                 ]);
                 RestaurantMaster::create([
@@ -90,6 +109,7 @@ class RegisterController extends Controller
                     'address' => $data['address'],
                     'city' => $data['city'],
                     'email' => $data['restaurant_email'],
+                    'state' => $data['state'],
                     'zip_code' => $data['zip_code'],
                     'country' => $data['country_id'],
                     'contact_number' => $data['restaurant_contact'],

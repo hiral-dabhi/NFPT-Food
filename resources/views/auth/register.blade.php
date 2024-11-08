@@ -61,10 +61,10 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="contact" class="col-md-4 col-form-label text-md-end">Contact<span
+                                <label for="contact" class="col-md-4 col-form-label text-md-end">Phone Number<span
                                         class="text-sm text-red-600">*</span></label>
                                 <div class="col-md-6">
-                                    <input type="number"name="contact" id="contact" placeholder="contact"
+                                    <input type="number"name="contact" id="contact" placeholder="Phone Number"
                                         class="form-control" value="{{ old('contact') }}">
                                     @error('contact')
                                         <p class="error">{{ $message }}</p>
@@ -111,7 +111,7 @@
                                     <label for="restaurant_email"
                                         class="col-md-4 col-form-label text-md-end">{{ __('Business Email') }}</label>
                                     <div class="col-md-6">
-                                        <input id="restaurant_email" type="text" placeholder="Business Name"
+                                        <input id="restaurant_email" type="text" placeholder="Business Email"
                                             class="form-control @error('restaurant_email') is-invalid @enderror"
                                             name="restaurant_email" value="{{ old('restaurant_email') }}"
                                             autocomplete="name" autofocus>
@@ -125,11 +125,11 @@
 
                                 <div class="row mb-3">
                                     <label for="restaurant_contact"
-                                        class="col-md-4 col-form-label text-md-end">{{ __('Business Contact number') }}</label>
+                                        class="col-md-4 col-form-label text-md-end">{{ __('Business Phone number') }}</label>
 
                                     <div class="col-md-6">
                                         <input id="restaurant_contact" type="number"
-                                            placeholder="Business Contact Number"
+                                            placeholder="Business Phone Number"
                                             class="form-control @error('restaurant_contact') is-invalid @enderror"
                                             name="restaurant_contact" value="{{ old('name') }}" autocomplete="name"
                                             autofocus>
@@ -156,9 +156,6 @@
                                         @enderror
                                     </div>
                                 </div>
-
-
-
                                 <div class="row mb-3">
                                     <label for="city" class="col-md-4 col-form-label text-md-end">City<span
                                             class="text-sm text-red-600">*</span></label>
@@ -171,16 +168,17 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="zip_code" class="col-md-4 col-form-label text-md-end">Zip Code<span
+                                    <label for="state" class="col-md-4 col-form-label text-md-end">State/Province<span
                                             class="text-sm text-red-600">*</span></label>
                                     <div class="col-md-6">
-                                        <input type="text" name="zip_code" id="zip_code" placeholder="Zip Code"
-                                            class="form-control" value="{{ old('zip_code') }}">
-                                        @error('zip_code')
+                                        <input type="text" name="state" id="state" placeholder="state"
+                                            class="form-control" value="{{ old('state') }}">
+                                        @error('state')
                                             <p class="error">{{ $message }}</p>
                                         @enderror
                                     </div>
                                 </div>
+                               
                                 <div class="row mb-3">
                                     <label for="country_id" class="col-md-4 col-form-label text-md-end">Country
                                         <span class="text-sm text-red-600">*</span></label>
@@ -197,6 +195,17 @@
                                     @error('country_id')
                                         <p class="text-sm text-red-600">{{ $message }}</p>
                                     @enderror
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="zip_code" class="col-md-4 col-form-label text-md-end">Zip/Postal Code<span
+                                            class="text-sm text-red-600">*</span></label>
+                                    <div class="col-md-6">
+                                        <input type="text" name="zip_code" id="zip_code" placeholder="Zip Code"
+                                            class="form-control" value="{{ old('zip_code') }}">
+                                        @error('zip_code')
+                                            <p class="error">{{ $message }}</p>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -298,6 +307,9 @@
                     required: true
                 },
                 city: {
+                    required: true
+                },
+                state: {
                     required: true
                 },
                 zip_code: {
