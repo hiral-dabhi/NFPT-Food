@@ -14,9 +14,6 @@
             @yield('title') |
         @endif {{ env('APP_NAME', 'NFPT') }}
     </title>
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_API') }}&libraries=places&callback=initAutocomplete"
-        async defer></script>
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('front/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -234,8 +231,7 @@
         </div>
     </div>
     <!-- location Modal -->
-    <div class="modal fade" id="add-delivery-location" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" aria-hidden="true">
+    {{-- <div class="modal fade" id="add-delivery-location" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content border-0 shadow">
                 <div class="modal-header px-4">
@@ -243,31 +239,30 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-4">
-                    {{-- <form> --}}
-                    <div class="input-group border p-1 overflow-hidden osahan-search-icon shadow-sm rounded mb-3">
+                    <!-- Autocomplete Search Input -->
+                    <div class="input-group border p-1  osahan-search-icon shadow-sm rounded mb-3">
                         <span class="input-group-text bg-white border-0"><i class="icofont-search"></i></span>
-                        <input type="text" class="form-control bg-white border-0 ps-0" id="location-input"
-                            name="location_input" placeholder="Search for area, location name">
+                        <input type="text" id="autocomplete" placeholder="Search for area, location name" class="form-control bg-white border-0 ps-0">
                     </div>
-                    {{-- </form> --}}
+    
+                    <!-- Use Current Location Link -->
                     <div class="mb-4">
-                        <a href="#" data-bs-dismiss="modal" aria-label="Close"
-                            class="text-success d-flex gap-2 text-decoration-none fw-bold">
+                        <a href="#" id="use-current-location" class="text-success d-flex gap-2 text-decoration-none fw-bold">
                             <i class="bi bi-compass text-success"></i>
                             <div>Use Current Location</div>
                         </a>
                     </div>
+    
+                    <!-- Map Display Area -->
                     <div class="text-muted text-uppercase small">Search Results</div>
                     <div>
-                        <div id="map" style="height: 400px;"></div>
-
-
+                        <div id="map" style="height: 400px; width: 100%;"></div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
+    </div> --}}
+    
     @livewireScripts
     <script src="{{ asset('front/assets/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('front/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -277,14 +272,32 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    {{-- <script
-        src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_API') }}&libraries=places&callback=initAutocomplete">
-    </script> --}}
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrnKqlsmJIGChHjoharwRwDHX5U0p2SJ8&libraries=places&callback=initAutocomplete" async
-        defer></script>
 
     @yield('scripts')
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrnKqlsmJIGChHjoharwRwDHX5U0p2SJ8&libraries=places&callback=initAutocomplete"
+        async defer></script>
     <script>
+        function initAutocomplete() {
+            const input = document.getElementById('autocomplete');
+            const autocomplete = new google.maps.places.Autocomplete(input);
+            // console.log(autocomplete);
+
+            autocomplete.addListener('place_changed', function() {
+                console.log(autocomplete);
+
+                const place = autocomplete.getPlace();
+                if (place.geometry) {
+                    const location = place.geometry.location;
+                    console.log(location);
+                } else {
+                    alert('No location details available');
+                }
+            });
+        }
+
+
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
                 var latitude = position.coords.latitude;
@@ -350,143 +363,6 @@
                 toastr.error("{{ session('error') }}");
             @endif
         });
-
-        let map, marker;
-
-        // Initialize the map and marker
-        function initMap() {
-            map = new google.maps.Map(document.getElementById("map"), {
-                center: {
-                    lat: -34.397,
-                    lng: 150.644
-                }, // Default center
-                zoom: 15
-            });
-
-            marker = new google.maps.Marker({
-                map: map,
-                position: {
-                    lat: -34.397,
-                    lng: 150.644
-                } // Default marker position
-            });
-        }
-
-        // Initialize the autocomplete and event listener for place change
-        function initAutocomplete() {
-            let autocomplete = new google.maps.places.Autocomplete(
-                document.getElementById("location-input"), {
-                    fields: ["geometry", "address_components"]
-                }
-            );
-
-            // Event listener for address selection
-            autocomplete.addListener("place_changed", function() {
-                const place = autocomplete.getPlace();
-
-                if (!place.geometry) {
-                    alert("No details available for input: '" + place.name + "'");
-                    return;
-                }
-
-                // Set map center and marker position
-                map.setCenter(place.geometry.location);
-                map.setZoom(15);
-                marker.setPosition(place.geometry.location);
-
-                // Update latitude and longitude fields
-                $("#latitude").val(place.geometry.location.lat());
-                $("#longitude").val(place.geometry.location.lng());
-
-                // Initialize variables for address and zip code
-                let formattedAddress = "";
-                let locationName = "";
-                let zipCode = "";
-
-                // Check if address components are available and parse them
-                if (place.address_components) {
-                    place.address_components.forEach(function(component) {
-                        const componentType = component.types[0];
-                        console.log(component.long_name);
-
-                        switch (componentType) {
-                            case "locality":
-                                $("#city").val(component.long_name); // City
-                                break;
-                            case "administrative_area_level_1":
-                                $("#state").val(component.long_name); // State
-                                break;
-                            case "country":
-                                var countryName = component.long_name;
-                                // Find and set the selected option in the dropdown
-                                $("#country option").each(function() {
-                                    if ($(this).text().trim().toLowerCase() === countryName
-                                        .toLowerCase()) {
-                                        $(this).prop("selected", true);
-                                    }
-                                });
-                                break;
-                            case "postal_code":
-                                zipCode = component.long_name; // Zip code
-                                break;
-                            default:
-                                // For the first component that's not locality, state, or country, treat it as the location name
-                                if (locationName === "") {
-                                    locationName = component.long_name;
-                                }
-
-                                // Append other components to the formatted address (excluding city, state, country)
-                                formattedAddress += component.long_name + " ";
-                                break;
-                        }
-                    });
-
-                    // Set the location name and zip code as the address value
-                    let fullAddress = locationName;
-                    $("#address").val(fullAddress.trim());
-                    $("#zip_code").val(zipCode);
-                }
-            });
-        }
-
-        // Load the map and autocomplete when the window loads
-        google.maps.event.addDomListener(window, "load", function() {
-            initMap();
-            initAutocomplete();
-        });
-
-        // function initAutocomplete() {
-        //     const input = document.getElementById('location-input');
-        //     const autocomplete = new google.maps.places.Autocomplete(input);
-
-        //     autocomplete.addListener('place_changed', () => {
-        //         const place = autocomplete.getPlace();
-        //         const address = place.formatted_address;
-
-        //         // Send the address to the backend to store in the session
-        //         saveAddressToSession(address);
-        //     });
-        // }
-
-        // function saveAddressToSession(address) {
-        //     fetch('/store-location-session', {
-        //             method: 'POST',
-        //             headers: {
-        //                 'Content-Type': 'application/json',
-        //                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
-        //             },
-        //             body: JSON.stringify({
-        //                 address: address
-        //             })
-        //         })
-        //         .then(response => response.json())
-        //         .then(data => {
-        //             if (data.success) {
-        //                 console.log('Address stored in session');
-        //             }
-        //         })
-        //         .catch(error => console.error('Error:', error));
-        // }
     </script>
 </body>
 
